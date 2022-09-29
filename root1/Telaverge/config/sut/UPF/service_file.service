@@ -1,0 +1,10 @@
+[Unit]
+Description=5G {{ service_name }}
+
+[Service]
+User=root
+WorkingDirectory=/home/telaverge/{{ service_name }}/
+ExecStart=/usr/bin/java -jar /home/telaverge/{{ service_name }}/{{ service_name }}-1.0.jar
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+{
+  "Name": "DTS",
+  "Version": "1.0.0",
+
+  "OS": {
+    "centos": "7.2.1503"
+  },
+  "Platform": {
+    "default_platform": "1.0.0"
+  },
+  "Applications": {
+    "datetime_server": "2.0.0",
+    "datetime_server1": "1.0.0"
+  }
+}

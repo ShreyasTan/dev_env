@@ -1,0 +1,8 @@
+{
+    "MonitorTime": 20,
+    "IntervalTime": 5,
+    "HssPodCount": 4,
+    "ResourceUpdateTime": 140,
+    "SleepTime": 70,
+    "statsResult": []
+}

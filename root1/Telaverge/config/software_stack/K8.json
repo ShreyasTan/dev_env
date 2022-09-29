@@ -1,0 +1,16 @@
+{
+	"solutionStackName" : "K8",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"ubuntu_os" : "18.04",
+		"default_os" : "1.0.0"
+	},
+	"application" : {
+		
+	},
+	"platform" : {
+		"k8_default_platform" : "1.0.0",
+		"K8" : "1.19.4",
+		"default_platform" : "1.0.0"
+	}
+}

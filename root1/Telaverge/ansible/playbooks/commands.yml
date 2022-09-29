@@ -1,0 +1,29 @@
+---
+
+- hosts: "{{host}}"
+  gather_facts: false
+  roles:
+    - {role: install-datetime-server, tags: ['install-datetime-server']}
+    - {role: uninstall-datetime-server, tags: ['uninstall-datetime-server']}
+    - {role: install-unicorn, tags: ['install-unicorn']}
+    - {role: uninstall-unicorn, tags: ['uninstall-unicorn']}
+    - {role: restart-unicorn, tags: ['restart-unicorn']}
+    - {role: write-testcase-config, tags: ['write-testcase-config']}
+    - {role: install-regal, tags: ['install-regal']}
+    - {role: uninstall-regal, tags: ['uninstall-regal']}
+    - {role: start-regal, tags: ['start-regal']}
+    - {role: stop-regal, tags: ['stop-regal']}
+    - {role: restart-regal, tags: ['restart-regal']}
+    - {role: install-product, tags: ['install-product']}
+    - {role: uninstall-product, tags: ['uninstall-product']}
+    - {role: update-configuration, tags: ['update-configuration']}
+    - {role: add-repo-package, tags: ['add-repo-package']}
+    - {role: remove-repo-packages, tags: ['remove-repo-packages']}
+    - {role: install-upf, tags: ['install-upf']}
+    - {role: install-scapy, tags: ['install-scapy']}
+    - {role: install-mongo, tags: ['install-mongo']}
+    #- {role: export-path, tags: ['export-path']}
+    - {role: start-upf, tags: ['start-upf']}
+    - {role: install-tarfile, tags: ['install-tarfile']}
+    - {role: uninstall-upf, tags: ['uninstall-upf']}
+    - {role: install-tele-radiology, tags: ['install-tele-radiology']}

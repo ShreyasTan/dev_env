@@ -1,0 +1,42 @@
+{
+    "client": {
+        "forceHTTP1": true,
+        "loadParameters": {
+            "numberOfThreads": 1,
+            "numberOfConnections": 1,
+            "endPoints": [
+                ""
+            ],
+            "desiredTPSPerThread": 1,
+            "testDurationInSec": 5
+        },
+        "callFlow": [
+            {
+                "count": 1,
+                "send": {
+                    "messageID": "REQ01",
+                    "method": "POST",
+                    "url": "http://{{ host_ip }}:8000/nsmf-pdusession/v1/sm-contexts",
+                    "header": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    "httpBodyTemplate": "{{ session_creation_request_body }}",
+                    "receive": {
+                        "messageID": "RESP01",
+                        "store": {
+                            "header": {
+                                "Location": ""
+                            }
+                        },
+                        "validate": {
+                            "StatusCode": [
+                                201
+                            ]
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

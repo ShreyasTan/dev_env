@@ -1,0 +1,77 @@
+---
+  #vars:
+  #  container_name: teleradiolgy-react-app
+
+  #tasks:
+  - set_fact:
+     container_name : "teleradiolgy-react-app"
+
+  - name: Get the OS platform
+    command: cat /etc/centos-release
+    register: centosRelease
+
+  - name: Print the redhat-release
+    debug: msg={{ centosRelease.stdout }}
+
+  - name: running containers
+    command: docker ps -a
+    register: containers_
+    become: true
+    # become_user: root
+
+  - name: debug containers
+    debug:
+      var: containers_
+
+  - name: get the UI container id
+    command: docker ps -q --filter="name={{ container_name }}"
+    become: true
+    register: ui_cont_id
+
+  - name: debug UI container id
+    debug:
+      var: ui_cont_id
+   
+  - name: stop running UI container
+    shell: docker stop $(docker ps -a -q --filter name={{ container_name }})
+    become: true
+    become_user: root
+
+  # - name: removing/deleting existing ui container
+  #   command: docker rm $(docker ps -a -q --filter status=exited)
+  #   become: true
+
+  - name: checkout git repository (latest UI code)
+    git: 
+      repo: git@gitlab.telavergecommunications.com:root/teleradiology_ui.git
+      key_file: /root/.ssh/ui_creds
+      dest: /home/umraz/tele_ui_new/
+      version: test/develop
+      accept_hostkey: yes
+    become: no
+
+  - name: build and run the new UI code
+    command: docker-compose -f /home/umraz/tele_ui_new/web-client/docker-compose.yml up --build -d
+    register: docker_ui
+    become: true
+
+  - name: debug ui
+    debug: 
+      var: docker_ui
+
+  - name: Delete ui-code directory
+    file:
+      state: absent
+      path: /home/umraz/tele_ui_new/
+
+  - name: checkout git repository (latest backend code)
+    git: 
+      repo: git@gitlab.telavergecommunications.com:root/teleradiology.git
+      key_file: /root/.ssh/backend_creds
+      dest: /home/umraz/TeleRadiology_backend/
+      version: TeleRadiology_backend_dev
+      accept_hostkey: yes
+      force: yes
+      update: yes
+    become: no
+

@@ -1,0 +1,16 @@
+---
+# tasks file for install-unicorn
+   #- name: export cmake 
+   #  #shell: "export PATH=$PATH:/root/cmake/bin"
+   #  copy:
+   #     dest: /etc/profile.d/custom-path.sh
+   #     content: 'PATH=$PATH:/root/cmake/bin'
+
+   - name: 
+     command: ./build_restart_upf.sh
+     args:
+       chdir: "/root/upf/install/script/"
+     become_user: "root"
+     become: true
+ 
+

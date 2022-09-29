@@ -1,0 +1,16 @@
+---
+# tasks file for install-datetime-server
+ - name: Stopping regal services.
+   service:
+      name: regal
+      state: stopped
+
+ - name: Removing repo package.
+   file:
+           path: /opt/regal/repo/{{prod_name}}
+           state: absent
+
+ - name: Making regal services active.
+   service:
+      name: regal
+      state: started

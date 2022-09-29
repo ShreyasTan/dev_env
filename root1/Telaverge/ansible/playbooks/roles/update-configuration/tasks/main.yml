@@ -1,0 +1,9 @@
+---
+# tasks file for update-configuration
+ - set_fact:
+      file_path: "/opt/regal/config/{{ file_name }}"
+
+ - name: Update the configuration file
+   copy:
+           content: "{{ data }}"
+           dest: "{{ file_path }}"

@@ -1,0 +1,14 @@
+{
+  "Name": "thirdparty_stack",
+  "Version": "2.0.0",
+
+  "OS": {
+    "centos": "7.1.1503"
+  },
+  "Platform": {
+    "default_platform": "1.0.0"
+  },
+  "Applications": {
+    "haproxy": "1.5.18-9.el7"
+  }
+}

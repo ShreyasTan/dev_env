@@ -1,0 +1,239 @@
+{
+    "supi": "imsi-12345",
+    "unauthenticatedSupi": false,
+    "pei": "c{t^%`7xY_xZ}N%`H<bEQx/nO]\"5f$fF}1p[N[SZ 9[cJs(2$@8Hk \\[ki2_8%RUBm'm9pY%If",
+    "gpsi": "msisdn-48881",
+    "pduSessionId": 256,
+    "dnn": "access",
+    "sNssai": {
+        "sd": "010203",
+        "sst": 1
+    },
+    "hplmnSnssai": {
+        "sd": "010203",
+        "sst": 1
+    },
+    "servingNfId": "buff&nocp",
+    "guami": {
+        "plmnId": {
+            "mnc": "976",
+            "mcc": "32"
+        },
+        "amfId": "amfId"
+    },
+    "serviceName": "nnrf-nfm",
+    "servingNetwork": {
+        "mnc": "mnc",
+        "mcc": "mcc"
+    },
+    "requestType": "INITIAL_REQUEST",
+    "n1SmMsg": {
+        "contentId": "contentId"
+    },
+    "anType": "3GPP_ACCESS",
+    "ratType": "NR",
+    "presenceInLadn": "IN_AREA",
+    "ueLocation": {
+        "eutraLocation": {
+            "geographicalInformation": "geographicalInformation",
+            "globalNgenbId": {
+                "gNbId": {
+                    "bitLength": 11,
+                    "gNBValue": "172.16.8.15"
+                },
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "n3IwfId": "n3IwfId",
+                "ngeNbId": "ngeNbId"
+            },
+            "ageOfLocationInformation": 2624,
+            "tai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "geodeticInformation": "geodeticInformation",
+            "ecgi": {
+                "eutraCellId": "eutraCellId",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            }
+        },
+        "nrLocation": {
+            "geographicalInformation": "geographicalInformation",
+            "globalGnbId": {
+                "gNbId": {
+                    "bitLength": 28,
+                    "gNBValue": "gNBValue"
+                },
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "n3IwfId": "n3IwfId",
+                "ngeNbId": "ngeNbId"
+            },
+            "ageOfLocationInformation": 4803,
+            "ncgi": {
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "nrCellId": "nrCellId"
+            },
+            "tai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "geodeticInformation": "geodeticInformation"
+        },
+        "n3gaLocation": {
+            "ueIpv4Addr": "198.51.100.1",
+            "n3gppTai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "ueIpv6Addr": "2001:db8:85a3::8a2e:370:7334",
+            "n3IwfId": "n3IwfId",
+            "portNumber": 0
+        }
+    },
+    "ueTimeZone": "string",
+    "addUeLocation": {
+        "eutraLocation": {
+            "geographicalInformation": "geographicalInformation",
+            "globalNgenbId": {
+                "gNbId": {
+                    "bitLength": 28,
+                    "gNBValue": "gNBValue"
+                },
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "n3IwfId": "n3IwfId",
+                "ngeNbId": "ngeNbId"
+            },
+            "ageOfLocationInformation": 2624,
+            "tai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "geodeticInformation": "geodeticInformation",
+            "ecgi": {
+                "eutraCellId": "eutraCellId",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            }
+        },
+        "nrLocation": {
+            "geographicalInformation": "geographicalInformation",
+            "globalGnbId": {
+                "gNbId": {
+                    "bitLength": 28,
+                    "gNBValue": "gNBValue"
+                },
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "n3IwfId": "n3IwfId",
+                "ngeNbId": "ngeNbId"
+            },
+            "ageOfLocationInformation": 4803,
+            "ncgi": {
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                },
+                "nrCellId": "nrCellId"
+            },
+            "tai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "geodeticInformation": "geodeticInformation"
+        },
+        "n3gaLocation": {
+            "ueIpv4Addr": "198.51.100.1",
+            "n3gppTai": {
+                "tac": "tac",
+                "plmnId": {
+                    "mnc": "mnc",
+                    "mcc": "mcc"
+                }
+            },
+            "ueIpv6Addr": "2001:db8:85a3::8a2e:370:7334",
+            "n3IwfId": "n3IwfId",
+            "portNumber": 0
+        }
+    },
+    "smContextStatusUri": "string",
+    "hSmfUri": "string",
+    "additionalHsmfUri": [
+        "string"
+    ],
+    "oldPduSessionId": 255,
+    "pduSessionsActivateList": [
+        255
+    ],
+    "ueEpsPdnConnection": "string",
+    "hoState": "NONE",
+    "pcfId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "nrfUri": "string",
+    "supportedFeatures": "8fd586Ef6DB8951628a0d702e3be886Ec751C",
+    "selMode": "VERIFIED",
+    "backupAmfInfo": [
+        {
+            "backupAmf": "backupAmf",
+            "guamiList": [
+                {
+                    "plmnId": {
+                        "mnc": "mnc",
+                        "mcc": "mcc"
+                    },
+                    "amfId": "amfId"
+                },
+                {
+                    "plmnId": {
+                        "mnc": "mnc",
+                        "mcc": "mcc"
+                    },
+                    "amfId": "amfId"
+                }
+            ]
+        }
+    ],
+    "traceData": {
+        "eventList": "eventList",
+        "collectionEntityIpv6Addr": "2001:db8:85a3::8a2e:370:7334",
+        "collectionEntityIpv4Addr": "198.51.100.1",
+        "traceRef": "traceRef",
+        "interfaceList": "interfaceList",
+        "neTypeList": "neTypeList"
+    },
+    "udmGroupId": "string",
+    "routingIndicator": "buff&nocp",
+    "epsInterworkingInd": "NONE",
+    "indirectForwardingFlag": true
+}

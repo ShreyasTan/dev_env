@@ -1,0 +1,40 @@
+#  command-line args (--extra-vars switch)
+#   source_path: The source directory path
+#   destination_path = Destination(remote machine) directory path
+---
+   - name: Creating the directory /opt/dependencies
+     file:
+       path: "/opt/upf"
+       state: directory
+     become_user: "root"
+     become: true
+
+   - set_fact:
+      file_name : "{{ scapy_tar_file.split('/')[-1] }}"
+
+   - name: Copying the files
+     copy:
+       src: "{{ scapy_tar_file }}"
+       dest: /opt/upf
+     become_user: "root"
+     become: true
+
+   - name: Untar 
+     shell: "tar -xvf /opt/upf/{{ file_name }} -C /opt/upf"
+     become_user: "root"
+     become: true
+
+   - name: Install scapy
+     command: "python3 setup.py install"
+     args:
+       chdir: "/opt/upf/scapy-{{scapy_version}}"
+     become_user: "root"
+     become: true
+ 
+
+   - name: Remove archive file
+     file:
+       path: "/opt/upf/{{ file_name }}"
+       state: absent
+     become_user: "root"
+     become: true

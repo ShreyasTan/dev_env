@@ -1,0 +1,16 @@
+{
+	"solutionStackName" : "HSS_K8",
+	"solutionStackVersion" : "1.0.0",
+	"k8HelmCharts" : {
+		"mmehss-4node-release" : "1.0.0"
+	},
+	"os" : {
+		"default_os" : "1.0.0"
+	},
+	"application" : {
+		
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

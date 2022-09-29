@@ -1,0 +1,13 @@
+{
+   "Name":"Regal_machine",
+   "Version":"1.0.0",
+   "OS":{
+      "regal_os":"7.6.1810"
+   },
+   "Platform":{
+      "default_platform":"1.0.0"
+   },
+   "Applications":{
+      "regal":"3.8.1.0"
+   }
+}

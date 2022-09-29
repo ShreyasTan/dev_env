@@ -1,0 +1,6 @@
+---
+# tasks file for write-testcase-config
+ - name: Set Testcase configuration
+   copy: 
+        src: "{{ tc_config_file_path }}"
+        dest: "/opt/unicorn/testcases/{{ sut_name }}/{{ ts_name }}/{{ tc_name }}/test_config.json"

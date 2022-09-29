@@ -1,0 +1,14 @@
+{
+  "Name": "DTS",
+  "Version": "4.0.0",
+
+  "OS": {
+    "datetime_os": "7.1"
+  },
+  "Platform": {
+    "default_platform": "1.0.0"
+  },
+  "Applications": {
+    "datetime_server": "4.0.0"
+  }
+}

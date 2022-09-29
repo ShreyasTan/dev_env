@@ -1,0 +1,13 @@
+{
+	"solutionStackName" : "Unicorn_SS",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"centOS" : "7.6"
+	},
+	"application" : {
+		"unicorn_installer": "2.4.1"
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

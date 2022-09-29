@@ -1,0 +1,91 @@
+{
+  "SUTNames": ["Telaverge_datetime_server"],
+  "TopologyName": "client-server",
+  "SUTNames": ["Telaverge_datetime_server"],
+  "NodeCount": 1,
+  "MachineSource": "AWS",
+  "Nodes": [
+    {
+      "Name": "server",
+       "InstanceName": "Regal-DateTime-Server",
+
+      "OS": {
+
+        "Name": "datetime_os",
+        "Schema": "centOS",
+	"Version": "7.8",
+
+
+        "Platform": {
+          "Name": "default_platform",
+          "Schema": "DefaultPlatform",
+
+          "Applications": [
+            {
+              "Name": "datetime_server",
+              "Schema": "Telaverge_DateTimeServer"
+            }
+          ]
+        }
+      },
+
+      "RAM": 4,
+
+      "CPU": {
+        "CpuOpModes": "32-bit",
+        "ByteOrder": "Little Endian",
+        "Cpus": 4,
+        "Hyperthreading": "disabled",
+        "VendorID": "Genuine-Intel",
+        "CpuFamily": 6,
+        "ModelName": "Intel Core Processor (Broadwell)",
+        "ClockSpeed": "2.20GHz",
+        "MaxClockSpeed": "3000.0000",
+        "MinClockSpeed": "800.0000",
+        "BogoMIPS": "4190.29",
+        "CpuMode": "Current active profile: network-latency"
+      }
+
+    },
+    {
+      "Name": "client",
+      "InstanceName": "Regal-DateTime-Client",
+      "OS": {
+
+        "Name": "datetime_os",
+        "Schema": "centOS",
+
+
+        "Platform": {
+          "Name": "default_platform",
+          "Schema": "DefaultPlatform",
+
+          "Applications": [
+            {
+              "Name": "datetime_server",
+              "Schema": "Telaverge_DateTimeServer"
+            }
+          ]
+        }
+      },
+
+      "RAM": 4,
+
+      "CPU": {
+        "CpuOpModes": "32-bit",
+        "ByteOrder": "Little Endian",
+        "Cpus": 4,
+        "Hyperthreading": "disabled",
+        "VendorID": "Genuine-Intel",
+        "CpuFamily": 6,
+        "ModelName": "Intel Core Processor (Broadwell)",
+        "ClockSpeed": "2.20GHz",
+        "MaxClockSpeed": "3000.0000",
+        "MinClockSpeed": "800.0000",
+        "BogoMIPS": "4190.29",
+        "CpuMode": "Current active profile: network-latency"
+      }
+
+    }
+  ]
+}

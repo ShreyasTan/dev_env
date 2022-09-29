@@ -1,0 +1,6 @@
+---
+# tasks file for install-datetime-server
+ - name: Restarting regal sevices.
+   service:
+           name: regal
+           state: restarted

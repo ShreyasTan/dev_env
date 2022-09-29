@@ -1,0 +1,19 @@
+{
+"kubernetes": {
+        "dockerRegistry": {
+            "servers": [
+                    { "ip": "172.16.9.148", "port":5000 }
+            ],
+            "authentication":{
+                "userName": "test",
+                "password": "test"
+            }
+        },
+            "k8Config": {
+                "deployment": "app_4node_deploy_2.0.0.json"
+            }
+        },
+        "nodes": [
+            ]
+}
+

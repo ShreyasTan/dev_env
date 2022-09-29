@@ -1,0 +1,14 @@
+---
+# tasks file for install-unicorn
+ - set_fact:
+      file_name : "{{ rep_path.split('/')[-1] }}"
+
+ - name: Downloading package to /home directory
+   copy:
+         src: "{{ rep_path }}"
+         dest: /home/
+
+ - name: Installing Unicorn setup if not installed
+   command: bash "/home/{{ file_name }}"
+   args: 
+         creates: /opt/unicorn

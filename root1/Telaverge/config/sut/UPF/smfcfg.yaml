@@ -1,0 +1,100 @@
+info:
+  version: 1.0.2
+  description: SMF initial local configuration
+
+configuration:
+  smfName: SMF # the name of this SMF
+  sbi: # Service-based interface information
+    scheme: http # the protocol for sbi (http or https)
+    registerIPv4: 127.0.0.2 # IP used to register to NRF
+    bindingIPv4: {{ smf_management_ip }}  # IP used to bind the service
+    # bindingIPv4: 172.16.9.86  # IP used to bind the service
+    port: 8000 # Port used to bind the service
+    tls: # the local path of TLS key
+      key: config/TLS/smf.key # SMF TLS Certificate
+      pem: config/TLS/smf.pem # SMF TLS Private key
+  serviceNameList: # the SBI services provided by this SMF, refer to TS 29.502
+    - nsmf-pdusession # Nsmf_PDUSession service
+    - nsmf-event-exposure # Nsmf_EventExposure service
+    - nsmf-oam # OAM service
+  snssaiInfos: # the S-NSSAI (Single Network Slice Selection Assistance Information) list supported by this AMF
+    - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+        sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+        sd: 010203 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+      dnnInfos: # DNN information list
+        - dnn: access # Data Network Name
+          dns: # the IP address of DNS
+            ipv4: 8.8.8.8
+    - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+        sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+        sd: 112233 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+      dnnInfos: # DNN information list
+        - dnn: access # Data Network Name
+          dns: # the IP address of DNS
+            ipv4: 8.8.8.8
+  plmnList: # the list of PLMN IDs that this SMF belongs to (optional, remove this key when unnecessary)
+    - mcc: "208" # Mobile Country Code (3 digits string, digit: 0~9)
+      mnc: "93" # Mobile Network Code (2 or 3 digits string, digit: 0~9)
+  locality: area1 # Name of the location where a set of AMF, SMF and UPFs are located
+  cpFunctionFeatures: 1 # Control Plane FunctionFeatures in uint16 format
+  ueIp: {{ ue_ip_v4 }}
+  gnbIp: {{ gnb_traffic_interface_ip }}
+  n3Ip: {{ n3_ip_v4 }}
+  # ueIp: "192.168.100.57"
+  # gnbIp: "192.168.110.128"
+  # n3Ip: "192.168.110.244"
+  pfcp: # the IP address of N4 interface on this SMF (PFCP)
+    # addr: 192.168.110.193
+    addr: {{ smf_traffic_interface_ip }}
+  userplaneInformation: # list of userplane information
+    upNodes: # information of userplane node (AN or UPF)
+      gNB1: # the name of the node
+        type: AN # the type of the node (AN or UPF)
+      UPF:  # the name of the node
+        type: UPF # the type of the node (AN or UPF)
+        # nodeID: 192.168.103.57 # the IP/FQDN of N4 interface on this UPF (PFCP)
+        nodeID: {{ n4_ip_v4 }} # the IP/FQDN of N4 interface on this UPF (PFCP)
+        sNssaiUpfInfos: # S-NSSAI information list for this UPF
+          - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+              sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+              sd: 010203 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+            dnnUpfInfoList: # DNN information list for this S-NSSAI
+              - dnn: access
+                pools:
+                  - cidr: 10.60.0.0/16
+          - sNssai: # S-NSSAI (Single Network Slice Selection Assistance Information)
+              sst: 1 # Slice/Service Type (uinteger, range: 0~255)
+              sd: 112233 # Slice Differentiator (3 bytes hex string, range: 000000~FFFFFF)
+            dnnUpfInfoList: # DNN information list for this S-NSSAI
+              - dnn: access
+                pools:
+                  - cidr: 10.61.0.0/16
+        interfaces: # Interface list for this UPF
+          - interfaceType: N3 # the type of the interface (N3 or N9)
+            endpoints: # the IP address of this N3/N9 interface on this UPF
+              - 127.0.0.8
+            networkInstance: access # Data Network Name (DNN)
+    links: # the topology graph of userplane, A and B represent the two nodes of each link
+      - A: gNB1
+        B: UPF
+  nrfUri: http://127.0.0.10:8000 # a valid URI of NRF
+
+# the kind of log output
+# debugLevel: how detailed to output, value: trace, debug, info, warn, error, fatal, panic
+# ReportCaller: enable the caller report or not, value: true or false
+logger:
+  SMF:
+    debugLevel: trace
+    ReportCaller: false
+  NAS:
+    debugLevel: trace
+    ReportCaller: false
+  NGAP:
+    debugLevel: trace
+    ReportCaller: false
+  Aper:
+    debugLevel: trace
+    ReportCaller: false
+  PFCP:
+    debugLevel: trace
+    ReportCaller: false

@@ -1,0 +1,22 @@
+---
+# tasks file for uninstall-datetime-server
+  - name: find datetime_server installation
+    find:
+      paths: "/opt/"
+      file_type: directory
+      patterns: "datetime_server*"
+      recurse: yes
+      use_regex: yes
+    register: datetime_server_path
+    become_user: 'root'
+    become: true
+
+  - debug: var=datetime_server_path
+    become_user: 'root'
+    become: true
+
+  - name: execute uninstall script
+    command: "{{ datetime_server_path.files[0].path }}/uninstall.sh"
+    when: (datetime_server_path.matched == 1 )
+    become_user: 'root'
+    become: true

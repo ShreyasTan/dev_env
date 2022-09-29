@@ -1,0 +1,22 @@
+#  command-line args (--extra-vars switch)
+#   source_path: The source directory path
+#   destination_path = Destination(remote machine) directory path
+---
+   - name: Copying the file
+     copy:
+      src: "{{ mongo_repo_file }}"
+      dest: "{{ destination_path }}"
+
+   - name: Install mongo
+     command: "sudo yum install -y mongodb-org"
+     args:
+       chdir: "/root/"
+     become_user: "root"
+     become: true
+
+   - name: execute service
+     service:
+       name: "{{ service }}"
+       state: "{{ operation }}"
+  
+ 

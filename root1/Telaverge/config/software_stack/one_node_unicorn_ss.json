@@ -1,0 +1,13 @@
+{
+   "Name":"Unicorn_Server",
+   "Version":"1.0.0",
+   "OS":{
+      "centOS":"7.8.2003"
+   },
+   "Platform":{
+      "default_platform":"1.0.0"
+   },
+   "Applications":{
+      "unicorn_installer":"2.3.0"
+   }
+}

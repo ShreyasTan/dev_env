@@ -1,0 +1,437 @@
+{
+    "description": "UPF_7node_setup",
+    "topologyName": "UPF_7node_setup",
+    "topologyType": "local",
+    "nodes": [
+        {
+            "cpu": {
+                "bogoMIPS": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "minClockSpeed": "800.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "jkl",
+            "nodeName": "gNodeB",	
+            "description": "gNodeB is a 3GPP-compliant implementation of the 5G-NR base station",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "CentOS",
+                "platform": {
+                    "applications": [
+			    {
+			      "appName": "gNB",
+			      "appVersion": "1.0.0"
+			    },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.110.0/24"
+                    }
+                }
+            },
+            "ram": 1,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 30,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cpu": {
+                "MinClockSpeed": "800.0000",
+                "bogomips": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "mno",
+            "nodeName": "SMF",
+            "description": "SMF(Session Management Function ) is the software framework that is responsible for managing services on a system",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "CentOS",
+                "platform": {
+                    "applications": [
+			    {
+			      "appName": "5G_SMF",
+			      "appVersion": "1.0.0"
+			    },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.110.0/24"
+                    }
+                }
+            },
+            "ram": 1,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 30,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cpu": {
+                "MinClockSpeed": "800.0000",
+                "bogomips": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "lpwq",
+            "nodeName": "DN",
+	    "description": "The Data Network is related to the 3GPP 5G Architecture",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "CentOS",
+                "platform": {
+                    "applications": [
+			    {
+			      "appName": "dn",
+			      "appVersion": "1.0.0"
+			    },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.110.0/24"
+                    }
+                }
+            },
+            "ram": 1,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 30,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cpu": {
+                "MinClockSpeed": "800.0000",
+                "bogomips": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "lpwq",
+            "nodeName": "UDM",
+	    "description": "The Data Network is related to the 3GPP 5G Architecture",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "RedHat",
+                "platform": {
+                    "applications": [
+			    {
+			      "appName": "UDM_RELEASE",
+			      "appVersion": "1.0.0"
+			    },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.122.0/24"
+                    }
+                }
+            },
+            "ram": 2,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 50,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cpu": {
+                "MinClockSpeed": "800.0000",
+                "bogomips": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "lpwq",
+            "nodeName": "UDR",
+	    "description": "The Data Network is related to the 3GPP 5G Architecture",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "RedHat",
+                "platform": {
+                    "applications": [
+                {
+                    "appName": "UDRP_RELEASE",
+                    "appVersion": "1.0.0"
+                },
+                {
+                    "appName": "UDR_RELEASE",
+                    "appVersion": "1.0.0"
+                },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.122.0/24"
+                    }
+                }
+            },
+            "ram": 2,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 50,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cpu": {
+                "MinClockSpeed": "800.0000",
+                "bogomips": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 1,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "lpwq",
+            "nodeName": "unicorn_server_client",
+	        "description": "The Data Network is related to the 3GPP 5G Architecture",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "RedHat",
+                "platform": {
+                    "applications": [
+                {
+                    "appName": "unicorn_installer",
+                    "appVersion": "2.4.1"
+                },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.110.0/24"
+                    }
+                }
+            },
+            "ram": 1,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 30,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        },
+        {
+            "cleanUpRequired": true,
+            "cpu": {
+                "bogoMIPS": "4190.29",
+                "byteOrder": "Little Endian",
+                "clockSpeed": "2.20GHz",
+                "cpuFamily": 6,
+                "cpuMode": "Current active profile: network-latency",
+                "cpuOpModes": "32-bit",
+                "cpus": 5,
+                "hyperthreading": "disabled",
+                "maxClockSpeed": "3000.0000",
+                "minClockSpeed": "800.0000",
+                "modelName": "Intel Core Processor (Broadwell)",
+                "vendorID": "Genuine-Intel"
+            },
+            "networkInterface": {
+                "type1": {
+                    "count": 1,
+                    "mtu": 1500,
+                    "speed": 1000
+                }
+            },
+            "nodeId": "pqr",
+            "nodeName": "UPF",
+            "description": "The 5G User Plane Function (UPF) is the function that does all of the work to connect the actual data coming over the Radio Area Network (RAN) to the Internet",
+            "nodeType": "Lab-VM",
+            "os": {
+                "osName": "CentOS",
+                "platform": {
+                    "applications": [
+			    {
+			      "appName": "upf",
+			      "appVersion": "1.0.0"
+			    },
+                {
+                    "appName": "STATS",
+                    "appVersion": "1.0.0"
+                }
+		    ],
+                    "platformName": "default_platform"
+                },
+                "subnets": {
+                    "external_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.110.0/24"
+                    },
+                    "internal_traffic": {
+                        "interfaceType": "type1",
+                        "subnet": "192.168.120.0/24"
+                    }
+                }
+            },
+            "ram": 6,
+            "ramUnit": "gb",
+            "storage": {
+                "disks": [
+                    {
+                        "capacity": 30,
+                        "name": "sda",
+                        "storageUnit": "gb"
+                    }
+                ]
+            }
+        }
+    ]
+}
+

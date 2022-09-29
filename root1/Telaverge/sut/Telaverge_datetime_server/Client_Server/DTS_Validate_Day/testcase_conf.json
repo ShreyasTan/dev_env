@@ -1,0 +1,133 @@
+{"server":{
+	"StatsInfo": {
+	"Stats": {
+		"Type": "constant",
+		"Value": ["datetimestat"]
+		},
+		"Arguments": {
+			"Type": "constant",
+			"Value": {
+				"DatetimeServerStatDuration": 3
+				}
+			}
+		}
+	},
+"client":{
+	"StatsInfo": {
+	"Stats": {
+		"Type": "constant",
+		"Value": ["datetimestat"]
+		},
+		"Arguments": {
+			"Type": "constant",
+			"Value": {
+				"DatetimeServerStatDuration": 3
+				}
+			}
+		}
+	},
+
+	"statsResult": [{
+                "name": "DateAndTimeRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "DateAndTimeRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	},
+	{
+                "name": "LogPathRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "LogPathRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	},
+	{
+                "name": "TimeRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "TimeRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	},
+	{
+                "name": "DayRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "DayRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	},
+	{
+                "name": "MonthRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "MonthRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	},
+	{
+                "name": "YearRequestCount",
+                "graphType": "line",
+                "graphAttrib": [
+                        {
+                               "collection": "DatetimeServerStats",
+                               "xAxisKey": "Timestamp",
+                               "yAxisKey": "YearRequestCount",
+                               "xAxisLabel": "Timestamp",
+                               "yAxisLabel": "count",
+                               "yAxisPosition": "left",
+                               "filter": {
+                                       "nodeName": "server"
+                               }
+			}
+		]
+	}
+	]
+}

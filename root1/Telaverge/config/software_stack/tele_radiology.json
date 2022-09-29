@@ -1,0 +1,14 @@
+{
+	"solutionStackName" : "teleradiology_ss",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"CentOS" : "7.9"
+	},
+	"application" : {
+		"TeleRadiology": "1.0.0",
+		"TPTF": "1.0.0"
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

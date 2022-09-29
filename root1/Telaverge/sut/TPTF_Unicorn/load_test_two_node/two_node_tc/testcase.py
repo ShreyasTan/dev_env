@@ -1,0 +1,190 @@
+"""
+Testcase for executing Unicorn testcase TC6
+"""
+import time
+import regal_lib.corelib.custom_exception as exception
+
+
+class TwoNodeTc():
+    """ Unicorn test case with server and client nodes"""
+    def __init__(self):
+        """
+        Constructor for initialising client and server nodes.
+        """
+        from test_executor.test_executor.utility import GetRegal
+        from Telaverge.helper.tptf_unicorn_helper import TPTFUnicornHelper
+        log_mgr_obj = GetRegal().get_log_mgr_obj()
+        self._log = log_mgr_obj.get_logger(self.__class__.__name__)
+        self._log.debug(">")
+        self._topology = GetRegal().get_current_run_topology()
+        self.server_node = self._topology.get_node("unicorn_server")
+        self.client_node = self._topology.get_node("unicorn_client")
+        self.server_helper = TPTFUnicornHelper(GetRegal(), "unicorn_server",
+                                           "TPTF")
+        self.client_helper = TPTFUnicornHelper(GetRegal(), "unicorn_client",
+                                           "TPTF")
+        self.sut_name = GetRegal().get_current_sut()
+        self.ts_name = GetRegal().get_current_suite()
+        self.tc_name = GetRegal().get_current_test_case()
+        self.server_tptf_app = self.server_helper.get_tptf_app()
+        self.client_tptf_app = self.client_helper.get_tptf_app()
+        management_ip = self.server_helper.get_management_ip()
+        self.info_dict = {
+            "SutName": self.sut_name,
+            "SuiteName": self.ts_name,
+            "TestcaseName": self.tc_name,
+            "ip": management_ip
+        }
+        self._log.debug("<")
+
+    def configure_testcase(self):
+        """ Method used to configure testcase related
+        configuration before test case execution.
+
+        Comments:
+            1. Change the management ip in config
+
+        """
+        self._log.info("> Applying configuration for testcase")
+        self.server_tptf_app.apply_configuration(self.info_dict)
+        self.client_tptf_app.apply_configuration(self.info_dict)
+        self._log.info("< Successfully applied the configuration for testcase")
+
+    def run_test_case(self):
+        """ Method execute the testcase
+
+        Comments:
+            1. Using tptf application object execute testcase
+                in the remote node
+
+        """
+        self._log.info("> Starting the testcase")
+        result_server = self.server_tptf_app.run_test(
+                self.info_dict)
+        result_client = self.client_tptf_app.run_test(
+                self.info_dict)
+        if not result_server[0] or not result_client[0]:
+            err_msg = "Failed to start the test case %s - %s",
+            result_server[1], result_client[1]
+            raise exception.TestCaseFailed(self.tc_name, err_msg)
+        self._log.info("< Successfully started the testcase")
+
+    def monitor_testcase(self):
+        """ Method monitor for the testcase status
+
+        Comments:
+            1. Continously check for the INPROGRESS status
+               of test case
+
+        """
+        self._log.info("Monitoring testcase for inprogress state")
+        end_time = time.time() + 10
+        while end_time > time.time():
+            try:
+                server_status = self.server_tptf_app.get_test_result(
+                    self.info_dict)
+                client_status = self.client_tptf_app.get_test_result(
+                    self.info_dict)
+                if not server_status[0] or not client_status[0]:
+                    err_msg = "Test case is not started %s - %s ",
+                    server_status[1], client_status[1]
+                    raise exception.TestCaseFailed(self.tc_name, err_msg)
+                break
+            except exception.TestCaseFailed:
+                pass
+        while server_status[1][1]["testStatus"] == "IN_PROGRESS" or\
+            client_status[1][1]["testStatus"] == "IN_PROGRESS":
+            server_status = self.server_tptf_app.get_test_result(
+                self.info_dict)
+            client_status = self.client_tptf_app.get_test_result(
+                self.info_dict)
+            self._log.info("Test case is Running")
+        self._log.info("< Done with testcase state monitoring")
+
+    def check_test_run_status(self):
+        """ Method check the test result
+
+        Comments:
+            1. Get the test case result, is testcase
+                PASSED or FAILED
+
+        """
+        self._log.info("Getting test run result")
+        server_status = self.server_tptf_app.get_test_result(
+            self.info_dict)
+        client_status = self.client_tptf_app.get_test_result(
+            self.info_dict)
+        if server_status[1][1]["testStatus"] != "PASSED":
+            self._log.error(server_status[1][1]["testStatus"])
+            raise exception.TestCaseFailed(self.tc_name,
+                    server_status[1][1]["additionalInfo"])
+        if client_status[1][1]["testStatus"] != "PASSED":
+            self._log.error(client_status[1][1]["testStatus"])
+            raise exception.TestCaseFailed(self.tc_name,
+                    client_status[1][1]["additionalInfo"])
+        self._log.info("Test case successfully executed")
+
+    def execute_test_case(self):
+        """
+        Function for executing Unicorn testcase.
+        1. Setup stats and restart the Unicorn on both nodes.
+        2. Start the unicorn stats on both nodes
+        3. Configure the testcase configuration for both clinet and server
+        node.
+        4. Start the testcase execution in server and client.
+        5. Monitor the status of testcase execution(status is IN_PROGRESS)
+        6. Check the test run result on both nodes.
+        7. Stop Unicorn stats on both nodes.
+
+        """
+        self._log.debug(">")
+        try:
+            self.setup_and_start_nodes()
+            self.server_helper.start_stats(["unicornstat"])
+            self.client_helper.start_stats(["unicornstat"])
+            self.configure_testcase()
+            self.run_test_case()
+            time.sleep(3)
+            self.monitor_testcase()
+            self.check_test_run_status()
+            self.client_helper.stop_stats(["unicornstat"])
+            self.server_helper.stop_stats(["unicornstat"])
+            self._log.debug("<")
+        except Exception as ex:
+            self._log.debug("<")
+            raise exception.TestCaseFailed(self.tc_name, str(ex))
+
+    def setup_and_start_nodes(self):
+        """
+        Function to set testcase configuration and start Unicorn app on both
+        the nodes.
+
+        Args: None.
+
+        Returns: None.
+        """
+        self._log.debug(">")
+        test_dict = {"sut_name": self.sut_name, "ts_name": self.ts_name,
+                   "tc_name": self.tc_name}
+        self.server_helper.restart_unicorn()
+        self.client_helper.restart_unicorn()
+        self._log.info("Unicorn restarted.")
+        args_dict = {
+            "unicorn_server": {
+		"SingleNode": False,
+		"NodeType": "Server"
+		}
+        }
+        self.server_helper.setup_stats(args_dict)
+        args_dict = {
+            "unicorn_client": {
+		"SingleNode": False,
+		"NodeType": "Client"
+		}
+        }
+        self.client_helper.setup_stats(args_dict)
+        self._log.debug("<")
+
+def execute():
+    tc_obj = TwoNodeTc()
+    tc_obj.execute_test_case()

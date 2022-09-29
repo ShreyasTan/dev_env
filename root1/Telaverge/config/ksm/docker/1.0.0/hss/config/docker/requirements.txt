@@ -1,0 +1,2 @@
+pyDiameter==0.18.7.15
+Flask==1.1.2

@@ -1,0 +1,13 @@
+{
+	"solutionStackName" : "Jmeter_tptf",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"centOS" : "7.9"
+	},
+	"application" : {
+		"TPTF": "1.0.0"
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

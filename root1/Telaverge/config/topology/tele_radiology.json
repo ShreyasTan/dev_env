@@ -1,0 +1,42 @@
+{
+"topologyName": "TeleRadiology topology",
+  "topologyType": "local",
+  "description": "Topology deatils.",
+  "nodes": [
+    {
+      "nodeId": "node123",
+      "nodeName": "teleradiology",
+      "nodeType": "Lab-VM",
+      "os": {
+        "osName": "CentOS",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "TeleRadiology",
+              "appVersion": "2.4.1"
+            }
+          ]
+        }
+      },
+      "ram": 30,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 16
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 500,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    }
+  ]
+}

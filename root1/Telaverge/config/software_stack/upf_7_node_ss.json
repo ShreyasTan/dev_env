@@ -1,0 +1,22 @@
+{
+	"solutionStackName" : "Private-5G",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"CentOS" : "7.9",
+        "RedHat":8.6
+	},
+	"application" : {
+		"gNB": "1.0.0",
+		"5G_SMF": "1.0.0",
+		"dn": "1.0.0",
+        "UDRP_RELEASE":"1.0.0",
+        "UDR_RELEASE":"1.0.0",
+        "UDM_RELEASE":"1.0.0",
+        "unicorn_installer":"2.4.1",
+		"upf": "1.0.0",
+		"STATS":"1.0.0"
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

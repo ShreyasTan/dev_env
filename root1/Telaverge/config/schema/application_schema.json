@@ -1,0 +1,53 @@
+{
+	"Telaverge_DateTimeServer": {
+		"$id": "http://json-schema.org/draft-07/schema#",
+			"$schema": "http://json-schema.org/draft-07/schema#",
+			"properties": {
+				"Name": {
+					"type": "string"
+				},
+				"Version": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"Name"
+				],
+			"title": "Telaverge_DateTimeServer schema",
+			"type": "object"
+	},
+	"Unicorn": {
+		"$id": "http://json-schema.org/draft-07/schema#",
+			"$schema": "http://json-schema.org/draft-07/schema#",
+			"properties": {
+				"Name": {
+					"type": "string"
+				},
+				"Version": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"Name"
+				],
+			"title": "Unicorn schema",
+			"type": "object"
+	},
+	"Regal": {
+		"$id": "http://json-schema.org/draft-07/schema#",
+			"$schema": "http://json-schema.org/draft-07/schema#",
+			"properties": {
+				"Name": {
+					"type": "string"
+				},
+				"Version": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"Name"
+				],
+			"title": "Regal schema",
+			"type": "object"
+	}
+}

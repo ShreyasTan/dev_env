@@ -1,0 +1,38 @@
+{
+  "TopologyName": "regal_node_for_uia_testing",
+  "SUTNames": ["RegalUI"],
+  "NodeCount": 1,
+  "Nodes": [
+    {
+      "Name": "regal_node",
+      "OS": {
+        "Name": "regal_os",
+        "Schema": "Regal_centOS",
+        "Platform": {
+           "Name": "regal_package",
+          "Schema": "Regal_package",
+          "Applications": [
+      	      {
+                  "Name": "regal-netnumber-suts",
+			"Schema": "Regal"
+              },
+              {
+            "Name": "regal-diametriq-suts",
+			"Schema": "Regal"
+              }
+          ]
+        }
+      },
+      "RAM": 2,
+      "CPU": {
+        "CpuOpModes": "32-bit",
+        "ByteOrder": "Little Endian",
+        "Cpus": 3,
+        "Hyperthreading": "disabled",
+        "VendorID": "GenuineIntel",
+        "CpuFamily": 4,
+        "BogoMIPS": "4190.29"
+      }
+    }
+  ]
+}

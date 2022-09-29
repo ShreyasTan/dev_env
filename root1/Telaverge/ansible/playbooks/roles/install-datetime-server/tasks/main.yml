@@ -1,0 +1,99 @@
+---
+# tasks file for install-datetime-server
+ - set_fact:
+      file_name : "{{ rep_path.split('/')[-1] }}"
+
+ - set_fact:
+      dir_name : "{{ file_name.rsplit('.', 2)[0] }}"
+
+ - set_fact:
+      file_path: /opt/{{ file_name }}
+
+ - name: Download datetime-server tarball
+   copy:
+        src: "{{ rep_path }}"
+        dest: "{{ file_path }}"
+   become_user: 'root'
+   become: true
+
+ - name: unarchive files
+   shell: tar -xvf "{{ file_path }}"
+   args: 
+     chdir: "/opt"
+   become_user: 'root'
+   become: true
+      
+
+ #- name: find folders from location
+ #  find:
+ #     paths: "/tmp/"
+ #     file_type: directory
+ #     patterns: "datetime_server*"
+ #     recurse: yes
+ #     use_regex: yes
+ #  register: datetime_server_path
+
+ - debug: var=datetime_server_path
+
+ - name: execute datetime-server install script
+   #command: "sh /opt/{{ dir_name }}/install.sh"
+   shell: "cp /opt/{{ dir_name }}/datetime-server.service /usr/lib/systemd/system/"
+   become_user: 'root'
+   become: true
+   #when: (datetime_server_path.matched == 1 )
+
+ - name: copy the client script to service path
+   #command: "sh /opt/{{ dir_name }}/install.sh"
+   shell: "cp /opt/{{ dir_name }}/datetime-client.service /usr/lib/systemd/system/"
+   become_user: 'root'
+   become: true
+   when: dir_name is search("4.0.0") #if 4.0.0 in dir_name
+   #when: (datetime_server_path.matched == 1 )
+
+ - name: system reload
+   shell: "systemctl daemon-reload"
+   become_user: 'root'
+   become: true
+
+ - name: Modifying snmp config
+   blockinfile:
+     dest: /etc/snmp/snmpd.conf
+     block: |
+       rocommunity public 127.0.0.1
+       rwcommunity simple 127.0.0.1
+       master agentx
+     backup: yes
+   become_user: 'root'
+   become: true
+
+ - name: ansible copy file backup example
+   copy:
+     src: /opt/{{ dir_name }}/DateTimeServer-MIB.txt
+     dest: /usr/share/snmp/mibs
+     backup: yes
+     remote_src: yes
+   become_user: 'root'
+   become: true
+
+ - name: Ansible replace string
+   replace:
+     path: /etc/snmp/snmpd.conf
+     regexp: 'com2sec notConfigUser  default       public'
+     replace: "#com2sec notConfigUser  default       public"
+   become_user: 'root'
+   become: true
+
+ - name: Start TITAN
+   service: name=snmpd state=started
+   become_user: 'root'
+   become: true
+
+ - name: Removing datetime-server files
+   file:
+      path: "/opt/{{ file_name }}"
+      state: absent
+   become_user: 'root'
+   become: true
+   #with_items:
+   #   - "{{ file_path }}"
+   #   - "{{ datetime_server_path.files[0].path }}"

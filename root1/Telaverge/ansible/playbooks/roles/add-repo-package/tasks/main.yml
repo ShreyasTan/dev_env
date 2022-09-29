@@ -1,0 +1,6 @@
+---
+# tasks file for add-repo-package
+ - name: Copy the Repo packages to respective dirc.
+   copy:
+           src: "{{ rep_path }}"
+           dest: /opt/regal/repo/{{ prod_name }}/

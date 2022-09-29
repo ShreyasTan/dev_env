@@ -1,0 +1,24 @@
+{
+  "supi": "imsi-{{.supi}}",
+  "gpsi": "msisdn-0123456789123",
+  "ipv4Addr": "{{.ipv4Addr}}",
+  "ipDomain": "netnumber.com",
+  "dnn": "netnumber.com",
+  "macAddr48": "09-A1-F4-09-A0-F3-33",
+  "pcfIpEndPoints": [
+	{
+	  "ipv4Address": "198.51.100.1",
+	  "ipv6Address": "2001:db8:85a3::8a2e:370:7334",
+	  "port": 3006
+	}
+  ],
+  "pcfDiamHost": "pcf1.netnumber.com",
+  "pcfDiamRealm": "netnumber.com",
+  "snssai": {
+	"sst": 1,
+	"sd": "ABC-Enterprise"
+  },
+  "pcfId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "recoveryTime": "2020-04-04T21:32:48.390Z"
+}
+

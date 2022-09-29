@@ -1,0 +1,293 @@
+{
+    "regalSpecificConfig": {
+        "tcIterationCount": 1
+    }, 
+    "statsResult": [
+        {
+            "graphAttrib": [
+                {
+                    "collection": "UnicornStats", 
+                    "filter": {
+                        "nodeName": "unicorn_client"
+                    }, 
+                    "xAxisKey": "Timestamp", 
+                    "xAxisLabel": "Timestamp", 
+                    "yAxisKey": "TotalMessagesHandled", 
+                    "yAxisLabel": "Messages Handeld", 
+                    "yAxisPosition": "left"
+                }
+            ], 
+            "graphType": "line", 
+            "name": "Messages Handled"
+        }, 
+        {
+            "graphAttrib": [
+                {
+                    "collection": "UnicornStats", 
+                    "filter": {
+                        "nodeName": "unicorn_client"
+                    }, 
+                    "xAxisKey": "Timestamp", 
+                    "xAxisLabel": "Timestamp", 
+                    "yAxisKey": "TPS", 
+                    "yAxisLabel": "TPS", 
+                    "yAxisPosition": "left"
+                }
+            ], 
+            "graphType": "line", 
+            "name": "TPS"
+        }
+      ], 
+    "unicorn_client": {
+        "CertificateFiles": {
+            "cliCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliCertificate.pem", 
+            "cliPrivate_key": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliPrivate_key.pem", 
+            "servCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/servCertificate.pem"
+        }, 
+         "StatsInfo": {
+	       "Arguments": {
+		       "Type": "constant",
+	               "Value": {
+			       "NodeType": "Client",
+		               "UnicornStatsDuration": 5,
+			       "SingleNode": false
+		       }
+            },
+            "Stats": {
+                 "Type": "constant",
+                 "Value": [
+                           "unicornstat"
+                   ]
+            }
+        },
+
+        "TCConfiguration": {
+            "client": {
+                "callFlow": [
+                    {
+                        "count": 1, 
+                        "send": {
+                            "header": {
+                                "3gpp-Sbi-Discovery-requester-nf-type": "AMF", 
+                                "3gpp-Sbi-Discovery-target-nf-type": "5G_EIR", 
+                                "3gpp-Sbi-Server-Binding": "bl=nfinstance", 
+                                "accept": "*/*", 
+                                "authorization": "Bearer", 
+                                "user-agent": "on-air"
+                            }, 
+                            "messageID": "REQ-01", 
+                            "method": "get"
+                        }
+                    }
+                ], 
+                "enableTLS": true, 
+                "loadParameters": {
+                    "desiredTPSPerThread": 625, 
+                    "endPoints": [
+                        "http://{{ unicorn_server.ip }}:8090/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8091/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8092/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8093/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8094/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8095/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8096/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8097/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8098/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8099/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8100/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8101/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8102/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8103/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8104/n5g-eir-eic/v1/equipment-status", 
+                        "http://{{ unicorn_server.ip }}:8105/n5g-eir-eic/v1/equipment-status"
+                    ], 
+                    "numberOfConnections": 16, 
+                    "numberOfThreads": 320, 
+                    "testDurationInSec": 90
+                }, 
+                "tlsConfig": {
+                    "certificateFile": "{{ cliCertificate }}", 
+                    "keyFile": "{{ cliPrivate_key }}", 
+                    "trustedCAs": [
+                        "{{ servCertificate }}"
+                    ]
+                }
+            }, 
+            "counters": [
+                {
+                    "endAt": "860999000013910", 
+                    "incrementBy": 2, 
+                    "name": "pei", 
+                    "resetAfterEachIterationOfCallFlow": false, 
+                    "startAt": "600000000000000", 
+                    "trackIndependtlyForEachConnection": false, 
+                    "type": "int"
+                }
+            ]
+        }, 
+        "TemplateFiles": {}
+    }, 
+    "unicorn_server": {
+        "CertificateFiles": {
+            "cliCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliCertificate.pem", 
+            "servCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/servCertificate.pem", 
+            "servPrivate_key": "{{ regal_root_path }}/product/Telaverge/config/certificate/servPrivate_key.pem"
+        },
+       "StatsInfo": {
+	       "Arguments": {
+		       "Type": "constant",
+	               "Value": {
+			       "NodeType": "Server",
+		               "UnicornStatsDuration": 5,
+			       "SingleNode": false
+		       }
+            },
+            "Stats": {
+                 "Type": "constant",
+                 "Value": [
+                           "unicornstat"
+                   ]
+            }
+        },
+        "TCConfiguration": {
+            "server": {
+                "enableTLS": true, 
+                "instances": [
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8090, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8091, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8092, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8093, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8094, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8095, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8096, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8097, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8098, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8099, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8100, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8101, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8102, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8103, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8104, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }, 
+                    {
+                        "ip": "{{ unicorn_server.ip }}", 
+                        "port": 8105, 
+                        "resourceIDs": [
+                            "service1-R1"
+                        ]
+                    }
+                ], 
+                "resources": [
+                    {
+                        "httpMethod": "get", 
+                        "messageID": "S1-R1", 
+                        "resourceID": "service1-R1", 
+                        "resourcePath": "/n5g-eir-eic/v1/equipment-status", 
+                        "response": {
+                            "statusCode": 200
+                        }
+                    }
+                ], 
+                "serverUpDurationInSec": 100, 
+                "tlsConfig": {
+                    "certificateFile": "{{ servCertificate }}", 
+                    "generatePreMasterSecretLog": false, 
+                    "keyFile": "{{ servPrivate_key }}", 
+                    "trustedCAs": [
+                        "{{ cliCertificate }}"
+                    ]
+                }
+            }
+        }, 
+        "TemplateFiles": {}
+    }
+}

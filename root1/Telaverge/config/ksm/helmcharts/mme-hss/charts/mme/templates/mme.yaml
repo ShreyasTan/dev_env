@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mme
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    app: mme
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: mme
+  template:
+    metadata:
+      labels:
+        app: mme
+    spec:
+      nodeName: {{ .Values.required_node }}
+      containers:
+      - name: mme
+        image: "{{ .Values.global.dockerRepository }}/{{ .Values.image }}:{{ .Values.tag }}"
+        imagePullPolicy: Always
+        env:
+          - name: REGAL_ROOT_PATH
+            value: "/opt/regal"
+        ports:
+        - containerPort: {{ .Values.containerPort}}
+        volumeMounts:
+        - mountPath: /var/log/mme
+          name: mme-claim
+      volumes:
+      - name: mme-claim
+        hostPath:
+         path: /var/log/mme
+         type: Directory

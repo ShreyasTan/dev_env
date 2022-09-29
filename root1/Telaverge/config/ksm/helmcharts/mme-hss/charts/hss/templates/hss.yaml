@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hss
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    app: hss
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: hss
+  template:
+    metadata:
+      labels:
+        app: hss
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - {{ .Values.required_node1 }}
+                - {{ .Values.required_node2 }}
+      containers:
+      - name: hss
+        image: "{{ .Values.global.dockerRepository }}/{{ .Values.image }}:{{ .Values.tag }}"
+        imagePullPolicy: Always
+        env:
+          - name: REGAL_ROOT_PATH
+            value: "/opt/regal"
+        ports:
+        - containerPort: {{ .Values.containerPort}}
+        volumeMounts:
+        - mountPath: /var/log/hss
+          name: hss-claim
+      volumes:
+      - name: hss-claim
+        hostPath:
+         path: /var/log/hss
+         type: Directory
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 5
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 5

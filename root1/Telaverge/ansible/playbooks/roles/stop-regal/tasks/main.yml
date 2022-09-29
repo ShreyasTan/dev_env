@@ -1,0 +1,6 @@
+---
+# tasks file for stop-regal
+ - name: Stopping regal sevices.
+   service:
+           name: regal
+           state: stopped

@@ -1,0 +1,70 @@
+{
+    "client": {
+        "forceHTTP1": true,
+        "loadParameters": {
+            "numberOfThreads": 1,
+            "numberOfConnections": 1,
+            "endPoints": [
+                ""
+            ],
+            "desiredTPSPerThread": 2,
+            "testDurationInSec": 1
+        },
+        "callFlow": [
+            {
+                "count": 1,
+                "send": {
+                    "messageID": "REQ01",
+                    "method": "POST",
+                    "url": "http://{{ host_ip }}:8000/nsmf-pdusession/v1/sm-contexts",
+                    "header": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    "httpBodyTemplate": "{{ session_creation_request_body }}"
+                },
+                "receive": {
+                    "messageID": "RESP01",
+                    "store": {
+                        "header": {
+                            "Location": ""
+                        }
+                    },
+                    "validate": {
+                        "StatusCode": [
+                            201
+                        ]
+                    }
+                }
+            },
+            {
+                "count": 1,
+                "send": {
+                    "messageID": "REQ02",
+                    "method": "POST",
+                    "url": "http://{{ host_ip }}:8000/nsmf-pdusession/v1/sm-contexts/{{uuid}}/modify",
+                    "header": {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    "httpBodyTemplate": "{{ session_modification_request_body }}",
+                    "restore": {
+                        "messageID": "RESP01",
+                        "url": {
+                            "uuid": "header.Location"
+                        }
+                    }
+                },
+                "receive": {
+                    "messageID": "RESP02",
+                    "validate": {
+                        "StatusCode": [
+                            200
+                        ]
+                    }
+                }
+            }
+            
+        ]
+    }
+}

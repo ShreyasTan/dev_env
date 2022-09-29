@@ -1,0 +1,32 @@
+#  command-line args (--extra-vars switch)
+#   source_path: The source directory path
+#   destination_path = Destination(remote machine) directory path
+---
+   - name: Creating the directory /opt/dependencies
+     file:
+       path: "{{ dest_extract_path }}"
+       state: directory
+     become_user: "root"
+     become: true
+
+   - set_fact:
+      file_name : "{{ tar_file.split('/')[-1] }}"
+
+   - name: Copying the files
+     copy:
+       src: "{{ tar_file }}"
+       dest: "{{ dest_extract_path }}"
+     become_user: "root"
+     become: true
+
+   - name: Untar 
+     shell: "tar -xvf {{ dest_extract_path}}/{{ file_name }} -C {{ dest_extract_path }}"
+     become_user: "root"
+     become: true
+
+   - name: Remove archive file
+     file:
+       path: "{{ dest_extract_path }}/{{ file_name }}"
+       state: absent
+     become_user: "root"
+     become: true

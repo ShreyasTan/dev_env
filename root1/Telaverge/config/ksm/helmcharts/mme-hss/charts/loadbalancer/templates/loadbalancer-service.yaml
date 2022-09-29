@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    app: loadbalancer
+spec:
+  ports:
+  - name: loadbalancer
+    port: {{ .Values.servicePort }}
+    targetPort: {{ .Values.containerPort}}
+  selector:
+    app: loadbalancer

@@ -1,0 +1,26 @@
+#  command-line args (--extra-vars switch)
+#   source_path: The source directory path
+#   destination_path = Destination(remote machine) directory path
+---
+
+   - name: Copying the files
+     copy:
+       src: "{{ item }}"
+       dest: "{{ destination_path }}"
+     with_fileglob:
+       - "{{ source_path }}"
+     become_user: "root"
+     become: true
+
+   - name: List files in the directory
+     find: 
+       paths: "{{ destination_path }}"
+     register: pip_files
+     become_user: "root"
+     become: true
+
+   - name: Install python packages
+     shell: "pip install {{ item }}"
+     with_items: "{{ pip_files.files }}"
+     become_user: "root"
+     become: true

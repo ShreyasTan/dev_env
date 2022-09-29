@@ -1,0 +1,54 @@
+{
+  "topologyName": "jmeter_single_node_server",
+  "topologyType": "local",
+  "description": "Topology of JMeter",
+  "nodes": [
+    {
+      "nodeId": "node123",
+      "nodeName": "jmeter_node",
+      "nodeType": "Lab-VM",
+	"machineAllocation" : {
+	"type" : "mandatory",
+	"name" : "JMETER_NODE"
+	},
+      "os": {
+        "osName": "centOS",
+        "osVersion": "7.9",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "TPTF",
+              "appVersion": "1.0.0",
+              "pluginName": "TPTFJmeterPlugin",
+              "frameWorkPath": "/opt/jmx"
+            }
+          ]
+        }
+      },
+      "ram": 2,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 2
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 60,
+            "name": "vda",
+            "storageUnit": "gb"
+          },
+	  {
+            "capacity": 20,
+            "name": "vdb",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    }
+  ]
+}

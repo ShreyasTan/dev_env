@@ -1,0 +1,15 @@
+#/usr/lib/systemd/system/
+
+[Unit]
+Description= Unicorn Stat Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/python /opt/remoteregal/statsscripts/unicorn_stats.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

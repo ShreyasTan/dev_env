@@ -1,0 +1,172 @@
+{
+    "cause": "REL_DUE_TO_HO",
+    "ngApCause": {
+        "group": 12,
+        "value": 12
+    },
+    "5gMmCauseValue": 123,
+    "ueLocation": {
+        "eutraLocation": {
+            "tai": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "tac": "df"
+            },
+            "ecgi": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "eutraCellId": "df12"
+            },
+            "ageOfLocationInformation": 12,
+            "ueLocationTimestamp": "2022-11-08T08:03:11.257Z",
+            "geographicalInformation": "df",
+            "geodeticInformation": "df",
+            "globalNgenbId": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "n3IwfId": "qwe213",
+                "gNbId": {
+                    "bitLength": 21,
+                    "gNBValue": "sf"
+                },
+                "ngeNbId": "asd"
+            }
+        },
+        "nrLocation": {
+            "tai": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "tac": "ew3"
+            },
+            "ncgi": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "nrCellId": "ewr34"
+            },
+            "ageOfLocationInformation": 23,
+            "ueLocationTimestamp": "2022-11-08T08:03:11.257Z",
+            "geographicalInformation": "dgf",
+            "geodeticInformation": "dfs",
+            "globalGnbId": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "n3IwfId": "gf",
+                "gNbId": {
+                    "bitLength": 12,
+                    "gNBValue": "any"
+                },
+                "ngeNbId": "def"
+            }
+        },
+        "n3gaLocation": {
+            "n3gppTai": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "tac": "gf"
+            },
+            "n3iwfId": "dfs",
+            "ueIpv4Addr": "kj",
+            "ueIpv6Addr": "lm",
+            "portNumber": 8080
+        }
+    },
+    "ueTimeZone": "",
+    "addUeLocation": {
+        "eutraLocation": {
+            "tai": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "tac": "df"
+            },
+            "ecgi": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "eutraCellId": "df12"
+            },
+            "ageOfLocationInformation": 12,
+            "ueLocationTimestamp": "2022-11-08T08:03:11.257Z",
+            "geographicalInformation": "df",
+            "geodeticInformation": "df",
+            "globalNgenbId": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "n3IwfId": "qwe213",
+                "gNbId": {
+                    "bitLength": 21,
+                    "gNBValue": "sf"
+                },
+                "ngeNbId": "asd"
+            }
+        },
+        "nrLocation": {
+            "tai": {
+                "plmnId": {
+                    "mnc": "976",
+                    "mcc": "32"
+                },
+                "tac": "ew3"
+            },
+            "ncgi": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "nrCellId": "ewr34"
+            },
+            "ageOfLocationInformation": 23,
+            "ueLocationTimestamp": "2022-11-08T08:03:11.257Z",
+            "geographicalInformation": "dgf",
+            "geodeticInformation": "dfs",
+            "globalGnbId": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "n3IwfId": "gf",
+                "gNbId": {
+                    "bitLength": 12,
+                    "gNBValue": "any"
+                },
+                "ngeNbId": "def"
+            }
+        },
+        "n3gaLocation": {
+            "n3gppTai": {
+                "plmnId": {
+                    "mnc": "88",
+                    "mcc": "249"
+                },
+                "tac": "gf"
+            },
+            "n3iwfId": "dfs",
+            "ueIpv4Addr": "kj",
+            "ueIpv6Addr": "lm",
+            "portNumber": 8080
+        }
+    },
+    "vsmfReleaseOnly": true,
+    "n2SmInfo": {
+        "contentId": "asd"
+    },
+    "n2SmInfoType": "PDU_RES_REL_RSP"
+}

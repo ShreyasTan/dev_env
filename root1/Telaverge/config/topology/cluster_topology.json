@@ -1,0 +1,253 @@
+{
+            "topologyType": "local",
+            "topologyName": "K8_4Node_Cluster",
+            "description" : "K8 4Node Cluster topology",
+            "nodes": [
+                {
+                "nodeName": "master01",
+                "nodeId" : "abc",
+                "nodeType": "Lab-VM",
+                "cleanUpRequired": true,
+                "machineAllocation" : {
+                "type" : "mandatory",
+                "name" : "Master1"
+                },
+                "os": {
+                    "osName": "ubuntu_os",
+                "subnets": {
+                            "access": {
+                                "subnet": "172.16.0.0/16", "interfaceType": "type1"
+                            },
+                            "k8": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            }
+                        },
+                        "platform": {
+                            "platformName" : "k8_default_platform",
+                            "applications": [
+
+                            ]
+                        }
+                },
+                "networkInterface": {
+                "type1": {
+                    "count": 2,
+                    "speed": 1000,
+                    "mtu": 1500
+                        }
+                    },
+                    "ram": 5,
+                    "ramUnit": "gb",
+                    "cpu": {
+                        "vendorID": "Genuine-Intel",
+                        "modelName": "Intel Core Processor (Broadwell)",
+                        "cpuFamily": 6,
+                        "cpuMode": "Current active profile: network-latency",
+                        "cpus": 4,
+                                                "bogomips": "4532.04",
+                        "hyperthreading": "disabled",
+                        "minClockSpeed": "800.0000",
+                        "cpuOpModes": "32-bit",
+                        "maxClockSpeed": "3000.0000",
+                        "clockSpeed": "2.20GHz",
+                        "byteOrder": "Little Endian"
+                    },  
+                "storage": {
+                        "disks": [{
+                                "capacity": 60, 
+                                "name": "sda",
+                                "storageUnit": "gb"
+                            }
+                        ]   
+                    }   
+             },  
+            {   
+                "nodeName": "worker01",
+                "nodeId" : "jkl",
+                "nodeType": "Lab-VM",
+                "cleanUpRequired": true,
+                "machineAllocation" : { 
+                "type" : "mandatory",
+                "name" : "Worker1"
+                },  
+                    "ram": 5,
+                    "ramUnit": "gb",
+                    "storage": {
+                        "disks": [
+                            {   
+                                "capacity": 60, 
+                                "name": "sda",
+                                "storageUnit": "gb"
+                            }   
+                        ]   
+                    },  
+                    "networkInterface": {
+                        "type1": {
+                            "count": 1,
+                            "speed": 1000,
+                            "mtu": 1500
+                        }   
+                    },  
+                    "os": {
+                    "osName": "ubuntu_os",
+                                            "platform": {
+                            "applications": [
+
+                            ],  
+                    "platformName" : "k8_default_platform"
+                        },  
+                        "subnets": {
+                            "access": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            },
+                            "k8": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            }
+                        }   
+                    },  
+                    "cpu": {
+                        "vendorID": "Genuine-Intel",
+                        "modelName": "Intel Core Processor (Broadwell)",
+                        "cpuFamily": 6,
+                        "cpuMode": "Current active profile: network-latency",
+                        "cpus": 4,
+                        "bogoMIPS": "4190.29",
+                        "hyperthreading": "disabled",
+                        "minClockSpeed": "800.0000",
+                        "cpuOpModes": "32-bit",
+                        "maxClockSpeed": "3000.0000",
+                        "clockSpeed": "2.20GHz",
+                        "byteOrder": "Little Endian"
+                    }   
+                },  
+            {   
+                "nodeName": "worker02",
+                "nodeId" : "mno",
+                "nodeType": "Lab-VM",
+                "cleanUpRequired": true,
+                "machineAllocation" : { 
+                "type" : "mandatory",
+                "name" : "Worker2"
+                },  
+                    "ram": 5,
+                    "ramUnit": "gb",
+                    "storage": {
+                        "disks": [
+                            {   
+                                "capacity": 60, 
+                                "name": "sda",
+                                "storageUnit": "gb"
+                            }
+                        ]   
+                    },  
+                    "networkInterface": {
+                        "type1": {
+                            "count": 1,
+                            "speed": 1000,
+                            "mtu": 1500
+                        }   
+                    },  
+                    "os": {
+                    "osName": "ubuntu_os",
+                        "platform": {
+                            "applications": [
+
+                            ],  
+                    "platformName" : "k8_default_platform"
+                        },  
+                        "subnets": {
+                            "access": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            },
+                            "k8": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            }
+                        }   
+                    },  
+                    "cpu": {
+                        "vendorID": "Genuine-Intel",
+                        "modelName": "Intel Core Processor (Broadwell)",
+                        "cpuFamily": 6,
+                        "cpuMode": "Current active profile: network-latency",
+                        "cpus": 4,
+                        "bogomips": "4190.29",
+                        "hyperthreading": "disabled",
+                        "MinClockSpeed": "800.0000",
+                        "cpuOpModes": "32-bit",
+                        "maxClockSpeed": "3000.0000",
+                        "clockSpeed": "2.20GHz",
+                        "byteOrder": "Little Endian"
+                    }   
+                },  
+            {   
+                "nodeName": "worker03",
+                "nodeId" : "pqr",
+                "nodeType": "Lab-VM",
+                "cleanUpRequired": true,
+                "machineAllocation" : { 
+                                "type" : "mandatory",
+                "name" : "Worker3"
+                },  
+                    "ram": 5,
+                    "ramUnit": "gb",
+                    "storage": {
+                        "disks": [
+                            {   
+                                "capacity": 60, 
+                                "name": "sda",
+                                "storageUnit": "gb"
+                            }   
+                        ]   
+                    },  
+                    "networkInterface": {
+                        "type1": {
+                            "count": 1,
+                            "speed": 1000,
+                            "mtu": 1500
+                        }   
+                    },  
+                    "os": {
+                    "osName": "ubuntu_os",
+                        "platform": {
+                            "applications": [
+
+                            ],  
+                                "platformName" : "K8",
+                                "k8Masters": [ "master01"],
+                                "k8Workers": ["worker01" , "worker02", "worker03"],
+                                "k8Subnet": "k8",
+                                "createClusterTimeoutInSeconds": 7200
+                        },  
+                        "subnets": {
+                            "access": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            },
+                            "k8": {
+                                "subnet": "172.16.0.0/16",
+                                "interfaceType": "type1"
+                            }
+                        }   
+                    },  
+                    "cpu": {
+                        "vendorID": "Genuine-Intel",
+                        "modelName": "Intel Core Processor (Broadwell)",
+                                                "cpuFamily": 6,
+                        "cpuMode": "Current active profile: network-latency",
+                        "cpus": 4,
+                        "bogoMIPS": "4190.29",
+                        "hyperthreading": "disabled",
+                        "minClockSpeed": "800.0000",
+                        "cpuOpModes": "32-bit",
+                        "maxClockSpeed": "3000.0000",
+                        "clockSpeed": "2.20GHz",
+                        "byteOrder": "Little Endian"
+                    }   
+             }   
+       ]   
+}

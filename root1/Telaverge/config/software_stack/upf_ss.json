@@ -1,0 +1,17 @@
+{
+	"solutionStackName" : "5G",
+	"solutionStackVersion" : "1.0.0",
+	"os" : {
+		"CentOS" : "7.9"
+	},
+	"application" : {
+		"gNB": "1.0.0",
+		"smf": "1.0.0",
+		"dn": "1.0.0",
+		"upf": "1.0.0",
+		"STATS":"1.0.0"
+	},
+	"platform" : {
+		"default_platform" : "1.0.0"
+	}
+}

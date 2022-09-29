@@ -1,0 +1,27 @@
+---
+# tasks file for install-product
+ - set_fact:
+      file_name : "{{ rep_path.split('/')[-1] }}"
+
+ - set_fact:
+      file_path: /home/{{ file_name }}
+
+ - name: Copy the product packages to home dir.
+   copy:
+           src: "{{ rep_path }}"
+           dest: /home/
+           mode: a+x
+
+ - name: Stopping Regal Services.
+   service:
+     name: regal
+     state: stopped
+
+ - name: Installing Product Packages.
+   command: sh {{ file_path }}
+   ignore_errors: True
+
+ - name: Making Regal Services Active.
+   service:
+     name: regal
+     state: started

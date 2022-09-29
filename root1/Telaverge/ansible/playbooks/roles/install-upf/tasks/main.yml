@@ -1,0 +1,99 @@
+---
+# tasks file for install-unicorn
+   - set_fact:
+      file_name : "{{ upf_tar_file.split('/')[-1] }}"
+
+   - name: Creates directory /opt/upf if it doesnt exist
+     file:
+       path: /root/
+       state: directory
+
+   - name: Copy UPF tarball
+     copy:
+        src: "{{ upf_tar_file }}"
+        dest: /root/
+
+   - name: unarchive files
+     #shell: tar -xvf /opt/upf/{{file_name }} -C /opt/upf
+     unarchive:
+       src: /root/{{file_name }}
+       dest: /root/
+       remote_src: yes
+
+   - set_fact:
+       cmake_tar_file: https://github.com/Kitware/CMake/releases/download/v3.22.3/cmake-3.22.3-linux-x86_64.tar.gz
+
+   - set_fact:
+      cmake_file_name : "{{ cmake_tar_file.split('/')[-1] }}"
+
+   - name: download cmake
+     get_url:
+       url: https://github.com/Kitware/CMake/releases/download/v3.22.3/cmake-3.22.3-linux-x86_64.tar.gz
+       dest: /root/
+
+   - name: unarchive files
+     #shell: tar -xvf /opt/upf/{{cmake_file_name }} -C /opt/upf
+     unarchive:
+       src: /root/{{ cmake_file_name }}
+       dest: /root
+       remote_src: yes
+
+   - set_fact:
+      cmake_dir_name : "{{ cmake_file_name.split('.tar')[0] }}"
+
+   - name: Remove cmake if already exists
+     file:
+       path: /root/cmake
+       state: absent
+     become_user: "root"
+
+   - name: rename cmake
+     shell: mv /root/{{ cmake_dir_name}} /root/cmake
+
+   #- name: export cmake 
+   #  shell: export PATH=$PATH:/root/cmake/bin
+   - name: export cmake
+     #shell: "export PATH=$PATH:/root/cmake/bin"
+     copy:
+        dest: /etc/profile.d/custom-path.sh
+        content: 'PATH=$PATH:/root/cmake/bin'
+
+   - name: Install the 'Development tools' package group
+     yum:
+       name: "@Development tools"
+       state: present
+  
+   - name: install compilation depencency
+     shell: bash /root/upf/install/script/install-dep.sh
+
+   - name: Install ninja build
+     #shell: yum --nogpgcheck install ninja-build
+     yum:
+       name: ninja-build 
+       state: present
+  
+   - name: Install meson 
+     #shell: yum --nogpgcheck install meson
+     yum:
+       name: meson
+       state: present
+
+   - name: install docker 
+     #shell: yum install docker
+     yum:
+       name: docker
+       state: present
+
+   - name: start the docker service
+     systemd:
+       name: docker
+       state: restarted
+       enabled: yes
+     become: true
+
+   - name: load uio driver
+     shell: modprobe uio_pci_generic
+
+   - name: reserve huge pages for dpdk
+     shell: echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+

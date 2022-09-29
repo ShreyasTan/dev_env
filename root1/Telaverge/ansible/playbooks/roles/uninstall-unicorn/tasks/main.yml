@@ -1,0 +1,12 @@
+---
+# tasks file for uninstall-unicorn
+  - name: stopping unicorn services.
+    service:
+          name: unicorn
+          state: stopped
+    ignore_errors: True
+            
+  - name: Uninstalling Unicorn.
+    file:
+       path: /opt/unicorn
+       state: absent

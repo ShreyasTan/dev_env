@@ -1,0 +1,12 @@
+[unit]
+Description = Service file
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart={{ run_smf_script }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

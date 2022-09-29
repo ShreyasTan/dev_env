@@ -1,0 +1,76 @@
+{
+  "topologyName": "two_node_client_server",
+  "topologyType": "local",
+  "description": "Topology deatils.",
+  "nodes": [
+    {
+      "nodeId": "node123",
+      "nodeName": "unicorn_server",
+      "nodeType": "Lab-VM",
+      "os": {
+        "osName": "CentOS",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "unicorn_installer",
+              "appVersion": "2.4.1"
+            }
+          ]
+        }
+      },
+      "ram": 2,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 2
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 1,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    },
+	{
+      "nodeId": "node345",
+      "nodeName": "unicorn_client",
+      "nodeType": "Lab-VM",
+      "os": {
+        "osName": "CentOS",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "unicorn_installer",
+              "appVersion": "2.4.1"
+            }
+          ]
+        }
+      },
+      "ram": 2,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 2
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 1,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]}}
+  ]
+}
+

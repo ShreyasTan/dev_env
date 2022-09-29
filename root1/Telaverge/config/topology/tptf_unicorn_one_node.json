@@ -1,0 +1,49 @@
+{
+  "topologyName": "single_node_server",
+  "topologyType": "local",
+  "description": "Topology deatils.",
+  "nodes": [
+    {
+      "nodeId": "node123",
+      "nodeName": "unicorn_server_client",
+      "nodeType": "Lab-VM",
+	"machineAllocation" : {
+	"type" : "mandatory",
+	"name" : "Machine1"
+	},
+      "os": {
+        "osName": "centOS",
+        "osVersion": "7.6",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "TPTF",
+              "appVersion": "1.0.0",
+              "pluginName": "UnicornOneNodeTPTFPlugin",
+              "frameWorkPath": "/opt/unicorn/testcases"
+            }
+          ]
+        }
+      },
+      "ram": 2,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 2
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 10,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    }
+  ]
+}

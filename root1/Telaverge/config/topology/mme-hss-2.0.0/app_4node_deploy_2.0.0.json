@@ -1,0 +1,115 @@
+{
+  "Name": "Application-deployment",
+  "ReleaseDeployments": [
+    { 
+      "ReleaseName": "mmehss-4node-release",
+      "Namespace": "default",
+      "HelmRepoName": "chartmuseum2",
+      "HelmChartName": "mme-hss",
+      "HelmRepoUrl": "http://chartmuseum:8084",
+      "HelmChartVersion": "2.0.0",
+      "Values": {
+	      "global": {
+		      "namespace": "mme-hss"
+	      },
+	      "mme": {   
+                            "required_node": "worker01",
+                            "servicePort": 5013,
+                            "containerPort": 5013,
+                            "replicaCount": 1,
+                            "image": "mme",
+                            "tag": "2.0.0",
+                            "nodePort": 30800
+                        },
+                 "hss": {
+                         "required_node1": "worker02",
+			 "required_node2": "worker03",
+                         "servicePort": 5014,
+                         "containerPort": 5014,
+  			 "nodePort": 30810,
+  			 "servicePort2": 5016,
+  			 "containerPort2": 5016,
+  			 "nodePort2": 30820,
+                         "replicaCount": 4,
+                         "image": "hss",
+                         "tag": "2.0.0"
+                       },
+                 "loadbalancer": {
+                         "required_node": "worker01",
+                         "servicePort": 5015,
+                         "containerPort": 5015,
+                         "replicaCount": 1,
+                         "image": "loadbalancer",
+                         "tag": "2.0.0"
+                       }
+      },
+      "CustomPostHelmExtractionSteps": [
+        { 
+          "Command": "string"
+        }
+      ],
+      "PreInstallCondition": [
+        { 
+          "Execute": "mkdir -p /var/log/mme",
+          "CommandType": "cmd",
+		  "TargetNode": [
+            "worker01"
+          ]   
+        },    
+        {   
+          "Execute": "mkdir -p /var/log/loadbalancer",
+          "CommandType": "cmd",
+          "TargetNode": [
+            "worker01"
+          ]   
+        },  
+        {   
+          "Execute": "mkdir -p /var/log/hss",
+          "CommandType": "cmd",
+          "TargetNode": [
+            "worker02", "worker03"
+          ]   
+        }   
+      ],    
+      "PostInstallCondition": [
+        {   
+          "Execute": "sleep 30",
+          "CommandType": "cmd",
+          "TargetNode": [
+            "Local"
+          ]   
+        },
+        {
+            "Execute": "verify_hss_mme_pod.sh",
+            "CommandType": "shellScript",
+            "TargetNode": [
+                "master01"
+            ]
+        }
+      ],  
+      "PostUninstallCondition": [
+        {   
+          "Execute": "sleep 20",
+          "CommandType": "cmd",
+          "TargetNode": [
+            "Local"
+          ]   
+        },    
+        {   
+          "Execute": "waiting_for_mme_hss_pods_termination.sh",
+          "CommandType": "shellScript",
+          "TargetNode": [
+            "master01"
+          ]   
+        },  
+		{   
+          "Execute": "waiting_for_namespace_termination.sh",
+          "CommandType": "shellScript",
+          "TargetNode": [
+            "master01"
+          ]
+        }
+      ]
+    }
+  ]
+}

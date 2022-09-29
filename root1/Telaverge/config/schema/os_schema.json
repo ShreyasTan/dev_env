@@ -1,0 +1,36 @@
+{
+   "Unicorn_centOS":{
+      "$schema":"http://json-schema.org/draft-07/schema#",
+      "$id":"http://json-schema.org/draft-07/schema#",
+      "title":"Unicorn CentOS schema",
+      "type":"object",
+      "properties":{
+         "Name":{
+            "type":"string"
+         },
+         "Version":{
+            "type":"string"
+         }
+      },
+      "required":[
+         "Name"
+      ]
+   },
+   "Regal_centOS":{
+      "$schema":"http://json-schema.org/draft-07/schema#",
+      "$id":"http://json-schema.org/draft-07/schema#",
+      "title":"Regal CentOS schema",
+      "type":"object",
+      "properties":{
+         "Name":{
+            "type":"string"
+         },
+         "Version":{
+            "type":"string"
+         }
+      },
+      "required":[
+         "Name"
+      ]
+   }
+}

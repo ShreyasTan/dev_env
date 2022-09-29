@@ -1,0 +1,15 @@
+#/usr/lib/systemd/system/
+
+[Unit]
+Description=MME HSS System Statistics Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python /opt/remoteregal/statsscripts/mme_hss_sys_stats.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

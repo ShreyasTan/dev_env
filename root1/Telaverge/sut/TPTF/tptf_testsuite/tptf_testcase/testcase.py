@@ -1,0 +1,72 @@
+"""TPTF sample testcase code
+"""
+
+import time
+import os
+import traceback
+
+import regal_lib.corelib.custom_exception as exception
+
+class TptfTestcase():
+    """Testcase code"""
+    def __init__(self):
+        # test executor service libraries
+        from test_executor.test_executor.utility import GetRegal
+        self.regal_api = GetRegal()
+        self._log_mgr_obj = self.regal_api.get_log_mgr_obj()
+        self._log = self._log_mgr_obj.get_logger(self.__class__.__name__)
+        self._log.debug(">")
+        self._log.debug("<")
+
+    def test_run(self):
+        """Method used to start, monitor and fetch the test run result
+
+        Args:
+            None
+
+        Returns:
+            None
+
+        Raises:
+            exception: TestCaseFailed
+        """
+        self._log.debug(">")
+        try:
+            test_case_name = "tptf_testcase"
+            test_suite_name = "tptf_testsuite"
+            topology_obj = self.regal_api.get_current_run_topology()
+            node_obj = topology_obj.get_node("tptf_node_01")
+            app_objs = node_obj.get_os().apps
+            app_name = "TPTF"
+            for app in app_objs:
+                if app[0] == app_name:
+                    app_obj = app[1]
+                    break
+            app_obj.apply_configuration(test_case_name, test_suite_name)
+            app_obj.run_test(test_case_name, test_suite_name)
+            end_time = time.time() + 30
+            while end_time > time.time():
+                done = app_obj.monitor_test(test_case_name , test_suite_name)
+                time.sleep(1)
+            result, reason = app_obj.get_test_result(test_case_name, test_suite_name)
+            if not result:
+                self._log.debug("<")
+                raise exception.TestCaseFailed(test_case_name, reason)
+            self._log.debug("<")
+            self._log.info("Successfully executed testcase")
+        except Exception as ex:
+            self._log.error(
+                    "Exception caught while running test %s", str(ex))
+            self._log.error(
+                    "Exception caught while running test %s",
+                    str(traceback.format_exc()))
+            self._log.debug("<")
+            raise exception.TestCaseFailed(test_case_name, str(ex))
+
+def execute():
+    """
+    Create test instance and run the test
+    """
+    test = TptfTestcase()
+    test.test_run()
+    test = None

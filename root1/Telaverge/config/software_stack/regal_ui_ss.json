@@ -1,0 +1,14 @@
+{
+   "Name":"Regal_machine",
+   "Version":"1.0.0",
+   "OS":{
+      "regal_os":"7.6.1810"
+   },
+   "Platform":{
+      "regal_package":"3.8.0.0"
+   }, 
+   "Applications":{
+      "regal-netnumber-suts":"1.10",
+      "regal-diametriq-suts":"1.10"
+   }  
+}  

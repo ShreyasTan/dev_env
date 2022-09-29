@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadbalancer
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    app: loadbalancer
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: loadbalancer
+  template:
+    metadata:
+      labels:
+        app: loadbalancer
+    spec:
+      nodeName: {{ .Values.required_node }}
+      containers:
+      - name: loadbalancer
+        image: "{{ .Values.global.dockerRepository }}/{{ .Values.image }}:{{ .Values.tag }}"
+        imagePullPolicy: Always
+        env:
+          - name: REGAL_ROOT_PATH
+            value: "/opt/regal"
+        ports:
+        - containerPort: {{ .Values.containerPort}}
+        volumeMounts:
+        - mountPath: /var/log/loadbalancer
+          name: loadbalancer-claim
+      volumes:
+      - name: loadbalancer-claim
+        hostPath:
+         path: /var/log/loadbalancer
+         type: Directory

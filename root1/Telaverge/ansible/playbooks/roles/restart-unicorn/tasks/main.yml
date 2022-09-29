@@ -1,0 +1,6 @@
+---
+# tasks file for restart-unicorn
+ - name: Start service or restart service unicorn, if already running.
+   service:
+         name: unicorn
+         state: restarted

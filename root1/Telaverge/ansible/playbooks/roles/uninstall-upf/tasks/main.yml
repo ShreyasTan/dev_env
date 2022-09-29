@@ -1,0 +1,39 @@
+---
+# tasks file for install-unicorn
+   - set_fact:
+      file_name : "{{ upf_tar_file.split('/')[-1] }}"
+
+   - name: Creates directory /opt/upf if it doesnt exist
+     file:
+       path: /root/
+       state: directory
+
+   - name: Remove cmake
+     file:
+       path: /root/cmake
+       state: absent
+     become_user: "root"
+
+   - name: Un-Install ninja build
+     #shell: yum --nogpgcheck install ninja-build
+     yum:
+       name: ninja-build 
+       state: absent
+  
+   - name: Un-Install meson 
+     #shell: yum --nogpgcheck install meson
+     yum:
+       name: meson
+       state: absent
+
+   - name: Uninstall-install docker 
+     #shell: yum install docker
+     yum:
+       name: docker
+       state: absent
+
+   - name: Remove UPF code
+     file:
+       path: "/root/upf"
+       state: absent
+     become_user: "root"

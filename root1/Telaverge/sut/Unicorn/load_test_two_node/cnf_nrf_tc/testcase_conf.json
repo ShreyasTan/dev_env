@@ -1,0 +1,222 @@
+{
+    "regalSpecificConfig": {
+        "tcIterationCount": 1
+    }, 
+    "statsResult": [
+        {
+            "graphAttrib": [
+                {
+                    "collection": "UnicornStats", 
+                    "filter": {
+                        "nodeName": "unicorn_client"
+                    }, 
+                    "xAxisKey": "Timestamp", 
+                    "xAxisLabel": "Timestamp", 
+                    "yAxisKey": "TotalMessagesHandled", 
+                    "yAxisLabel": "Messages Handeld", 
+                    "yAxisPosition": "left"
+                }
+            ], 
+            "graphType": "line", 
+            "name": "Messages Handled"
+        }, 
+        {
+            "graphAttrib": [
+                {
+                    "collection": "UnicornStats", 
+                    "filter": {
+                        "nodeName": "unicorn_client"
+                    }, 
+                    "xAxisKey": "Timestamp", 
+                    "xAxisLabel": "Timestamp", 
+                    "yAxisKey": "TPS", 
+                    "yAxisLabel": "TPS", 
+                    "yAxisPosition": "left"
+                }
+            ], 
+            "graphType": "line", 
+            "name": "TPS"
+        }
+      ], 
+    "unicorn_client": {
+        "CertificateFiles": {
+            "cliCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliCertificate.pem", 
+            "cliPrivate_key": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliPrivate_key.pem", 
+            "servCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/servCertificate.pem"
+        }, 
+         "StatsInfo": {
+	       "Arguments": {
+		       "Type": "constant",
+	               "Value": {
+			       "NodeType": "Client",
+		               "UnicornStatsDuration": 5,
+			       "SingleNode": false
+		       }
+            },
+            "Stats": {
+                 "Type": "constant",
+                 "Value": [
+                           "unicornstat"
+                   ]
+            }
+        },
+
+        "TCConfiguration": {
+            "client": {
+                "forceHTTP1": true,
+                "callFlow": [ 
+                    {
+                            "count": 1, 
+                            "send":{
+                                "messageID": "REQ-01",		
+                                "method": "get",  
+                                "header":{
+                                    "accept": "*/*",
+                                    "user-agent": "on-air",
+                                    "authorization": "Bearer",
+                                    "3gpp-Sbi-Discovery-target-nf-type": "5G_EIR",
+                                    "3gpp-Sbi-Discovery-requester-nf-type": "AMF",
+                                    "3gpp-Sbi-Server-Binding": "bl=nfinstance"	
+                                    },
+                                "queryParameters": {
+                                    "pei": "{% raw %}imei-{{.pei}}{% endraw %}",
+                                    "supi": "{% raw %}imsi-{{.supi}}{% endraw %}"
+                                    }
+                            }
+                    }
+                ], 
+                "enableTLS": true, 
+                "loadParameters": {	
+                    "numberOfThreads": 4, 
+                    "numberOfConnections" : 2,
+                    "endPoints": [
+                        "http://{{ unicorn_server.ip }}:8090/n5g-eir-eic/v1/equipment-status/{% raw %}{{.nfid}}{% endraw %}"
+                      ], 
+                    "desiredTPSPerThread": 100,
+                    "testDurationInSec": 60
+                   }, 
+                "tlsConfig": {
+                    "certificateFile": "{{ cliCertificate }}", 
+                    "keyFile": "{{ cliPrivate_key }}", 
+                    "trustedCAs": [
+                        "{{ servCertificate }}"
+                    ]
+                }
+            }, 
+            "counters": [
+                {
+                    "name": "pei",
+                    "type": "int",
+                    "startAt": "600000000000000",
+                    "endAt": "860999000013910",
+                    "incrementBy": 1,
+                    "trackIndependtlyForEachConnection": false,
+                    "resetAfterEachIterationOfCallFlow": false
+                },
+                    {
+                    "name": "supi",
+                    "type": "int",
+                    "startAt": "100000000000000",
+                    "endAt": "999999999999999",
+                    "incrementBy": 1,
+                    "trackIndependtlyForEachConnection": false,
+                    "resetAfterEachIterationOfCallFlow": false
+                },
+                {
+                    "name": "nfid",
+                    "type": "int",
+                    "startAt": "1",
+                    "endAt": "1",
+                    "incrementBy": 1,
+                    "trackIndependtlyForEachConnection": false,
+                    "resetAfterEachIterationOfCallFlow": false
+                }
+
+            ]
+        }, 
+        "TemplateFiles": {}
+    }, 
+    "unicorn_server": {
+        "CertificateFiles": {
+            "cliCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/cliCertificate.pem", 
+            "servCertificate": "{{ regal_root_path }}/product/Telaverge/config/certificate/servCertificate.pem", 
+            "servPrivate_key": "{{ regal_root_path }}/product/Telaverge/config/certificate/servPrivate_key.pem"
+        },
+       "StatsInfo": {
+	       "Arguments": {
+		       "Type": "constant",
+	               "Value": {
+			       "NodeType": "Server",
+		               "UnicornStatsDuration": 5,
+			       "SingleNode": false
+		       }
+            },
+            "Stats": {
+                 "Type": "constant",
+                 "Value": [
+                           "unicornstat"
+                   ]
+            }
+        },
+        "TCConfiguration": {
+            "server": {
+                "enableTLS": true, 
+                "instances": [
+                    {
+                        "ip": "{{ unicorn_server.ip }}",
+                        "port": 8090,
+                        "resourceIDs": ["service1-R1"]
+                    }
+                ], 
+                "resources": [
+                    {
+                        "resourceID": "service1-R1",
+                        "messageID": "S1-R1",
+                        "resourcePath": "/n5g-eir-eic/v1/equipment-status/1",
+                        "httpMethod": "get",
+                        "request": {
+                            "validate": {   
+                                "queryParameters": {    
+                                        "pei": "{% raw %}imei-{{.pei}}{% endraw %}"
+                                    }
+                            }
+                        },
+        
+                        "response": {
+                            "statusCode": 200,
+                            "header":{
+                                "Content-Type": "application/json; charset=UTF-8",
+                                "3gpp-Sbi-Server-Binding": "bl=nfinstance"
+                            },
+                                "httpBodyTemplate": "{{ response }}"
+                            }    
+                    }
+                ], 
+                "serverUpDurationInSec": 70, 
+                "tlsConfig": {
+                    "certificateFile": "{{ servCertificate }}", 
+                    "generatePreMasterSecretLog": false, 
+                    "keyFile": "{{ servPrivate_key }}", 
+                    "trustedCAs": [
+                        "{{ cliCertificate }}"
+                    ]
+                }
+            },
+            "counters": [
+                {  
+                   "name": "pei",
+                   "type": "int",
+                   "startAt": "600000000000000",
+                   "endAt": "860999000013910",
+                   "incrementBy": 1,
+                   "trackIndependtlyForEachConnection": false,
+                   "resetAfterEachIterationOfCallFlow": false
+           } 
+
+]
+        }, 
+        "TemplateFiles": {
+            "response": "{{ regal_root_path }}/product/Telaverge/config/httpbodytemplate/nrf_response.json"
+        }
+    }
+}

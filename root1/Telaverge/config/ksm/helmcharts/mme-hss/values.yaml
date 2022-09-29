@@ -1,0 +1,39 @@
+# Default values for mme-hss-4node.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Defined values
+
+global: 
+  namespace: mme-hss
+  dockerRepository:  "telaverge.dfi.registry.docker:5000"
+
+mme:
+  required_node: worker01
+  servicePort: 5013
+  containerPort: 5013
+  replicaCount: 1
+  image: mme
+  tag: "2.0.0"
+  nodePort: 30800
+
+hss:
+  required_node1: worker02
+  required_node2: worker03
+  servicePort: 5014
+  containerPort: 5014
+  nodePort: 30810
+  servicePort2: 5016
+  containerPort2: 5016
+  nodePort2: 30820
+  replicaCount: 4
+  image: hss
+  tag: "2.0.0"
+
+loadbalancer:
+  required_node: worker01
+  servicePort: 5015
+  containerPort: 5015
+  replicaCount: 1
+  image: loadbalancer
+  tag: "2.0.0"

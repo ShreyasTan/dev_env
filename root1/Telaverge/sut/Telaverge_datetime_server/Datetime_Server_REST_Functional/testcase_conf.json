@@ -1,0 +1,13 @@
+{
+  "Global": {
+      "RequestType": "year"
+  },
+  "TestCases": {
+      "tc_7": {
+        "RequestMessageCount": 10
+      },
+      "tc_8": {
+        "RequestMessageCount": 15
+      }
+  }
+}

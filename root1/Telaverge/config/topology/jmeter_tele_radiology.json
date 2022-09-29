@@ -1,0 +1,79 @@
+{
+"topologyName": "Jmeter TeleRadiology topology",
+  "topologyType": "local",
+  "description": "Topology deatils.",
+  "nodes": [
+    {
+      "nodeId": "node123",
+      "nodeName": "teleradiology",
+      "nodeType": "Lab-VM",
+      "os": {
+        "osName": "CentOS",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "TeleRadiology",
+              "appVersion": "1.0.0"
+            }
+          ]
+        }
+      },
+      "ram": 30,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 16
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 500,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    },
+    {
+      "nodeId": "node126",
+      "nodeName": "jmeter_node",
+      "nodeType": "Lab-VM",
+      "os": {
+        "osName": "CentOS",
+        "packages": [
+
+        ],
+        "platform": {
+          "platformName": "default_platform",
+          "platformVersion": "1.0.0",
+          "applications": [
+            {
+              "appName": "TPTF",
+              "appVersion": "1.0.0",
+	      "frameWorkPath": "/opt/jmx",
+	      "pluginName": "TPTFTRJmeterPlugin"
+            }
+          ]
+        }
+      },
+      "ram": 2,
+      "ramUnit": "gb",
+      "cpu": {
+        "cpus": 2
+      },
+      "storage": {
+        "disks": [
+          {
+            "capacity": 30,
+            "name": "sda",
+            "storageUnit": "gb"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+    "TestRunDuration": 300,
+    "Burst": 1,
+    "SleepTime": 10,
+    "BufferTime": 5,
+    "statsResult": [
+        {
+            "graphAttrib": [
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "master01",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "cpuUsed",
+                    "yAxisLabel": "CPU(%)",
+                    "yAxisUnit": "%",
+                    "yAxisPosition": "left"
+                },
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "master01",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "memUsed",
+                    "yAxisLabel": "RAM(KB)",
+                    "yAxisUnit": "KB",
+                    "yAxisPosition": "right"
+                }
+            ],
+            "graphType": "Line",
+            "name": "master01 - System KPIs"
+        },
+        {
+            "graphAttrib": [
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker01",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "cpuUsed",
+                    "yAxisLabel": "CPU(%)",
+                    "yAxisUnit": "%",
+                    "yAxisPosition": "left"
+                },
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker01",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "memUsed",
+                    "yAxisLabel": "RAM(KB)",
+                    "yAxisUnit": "KB",
+                    "yAxisPosition": "right"
+                }
+            ],
+            "graphType": "Line",
+            "name": "worker01 - System KPIs"
+        },
+        {
+            "graphAttrib": [
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker02",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "cpuUsed",
+                    "yAxisLabel": "CPU(%)",
+                    "yAxisUnit": "%",
+                    "yAxisPosition": "left"
+                },
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker02",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "memUsed",
+                    "yAxisLabel": "RAM(KB)",
+                    "yAxisUnit": "KB",
+                    "yAxisPosition": "right"
+                }
+            ],
+            "graphType": "Line",
+            "name": "worker02 - System KPIs"
+        },
+        {
+            "graphAttrib": [
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker03",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "cpuUsed",
+                    "yAxisLabel": "CPU(%)",
+                    "yAxisUnit": "%",
+                    "yAxisPosition": "left"
+                },
+                {
+                    "collection": "SystemStatResult",
+                    "filter": {
+                        "nodeName": "worker03",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "memUsed",
+                    "yAxisLabel": "RAM(KB)",
+                    "yAxisUnit": "KB",
+                    "yAxisPosition": "right"
+                }
+            ],
+            "graphType": "Line",
+            "name": "worker03 - System KPIs"
+        },
+        {
+            "graphAttrib": [
+                {
+                    "collection": "MmeStatsResult",
+                    "filter": {
+                        "nodeName": "worker01",
+                        "infraProfileName": "hss_cluster_infra"
+                    },
+                    "xAxisKey": "timeStamp",
+                    "xAxisLabel": "Timestamp",
+                    "yAxisKey": "TPS",
+                    "yAxisLabel": "TPS",
+                    "yAxisUnit": "count",
+                    "yAxisPosition": "left"
+                }
+            ],
+            "graphType": "line",
+            "name": "worker01 - MME TPS"
+        }
+    ],
+    "master01": {
+        "StatsInfo": {
+            "Stats": {
+                    "Type": "constant",
+                    "Value": 
+                    [
+                        "systemstats"
+                    ]
+                },
+	    "Arguments": {
+		    "Type": "constant",
+		    "Value": {
+			    "infraProfileName": "hss_cluster_infra"
+		    }
+	    }
+        }
+    },
+    "worker01": {
+        "StatsInfo": {
+            "Stats": {
+                    "Type": "constant",
+                    "Value": 
+                    [
+                        "systemstats", "mmestats"
+                    ]
+                },
+            "Arguments": {
+                "Type": "constant",
+                "Value": {
+                    "mmePort": 30800,
+                    "applicationName": "mme",
+		    "infraProfileName": "hss_cluster_infra"
+                }
+            }
+        }
+    },
+    "worker02": {
+        "StatsInfo": {
+            "Stats": {
+                    "Type": "constant",
+                    "Value": 
+                    [
+                        "systemstats"
+                    ]
+            },
+            "Arguments": {
+                "Type": "constant",
+                "Value": {
+                    "applicationName": "hss",
+		    "infraProfileName": "hss_cluster_infra"
+                }
+            }
+        }
+    },
+    "worker03": {
+        "StatsInfo": {
+            "Stats": {
+                    "Type": "constant",
+                    "Value": 
+                    [
+                        "systemstats"
+                    ]
+            },
+            "Arguments": {
+                "Type": "constant",
+                "Value": {
+                    "applicationName": "hss",
+		    "infraProfileName": "hss_cluster_infra"
+                }
+            }
+        }
+    }
+}

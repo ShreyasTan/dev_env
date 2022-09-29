@@ -1,0 +1,35 @@
+---
+# tasks file for install-regal
+ - set_fact:
+      file_name : "{{ rep_path.split('/')[-1] }}"
+
+ - set_fact:
+      file_path: /home/{{ file_name }}
+
+ - name: Copy the Regal packages to home dir.
+   copy:
+           src: "{{ rep_path }}"
+           dest: /home/
+           mode: a+x
+
+ - name: turning on internet
+   command: sed -i 's/#nameserver 8.8.8.8/nameserver 8.8.8.8/' /etc/resolv.conf
+ - name: turning off internet
+   command: sed -i 's/nameserver 8.8.8.8/#nameserver 8.8.8.8/' /etc/resolv.conf
+
+ - name: Installing Regal.
+   shell: yes | sh {{ file_path }} {{ host }} no
+
+ - name: Check if Regal is successfully installed
+   service_facts:
+ - debug:
+     msg: "Regal Services Exists"
+   when: "'regal.service' in services"
+
+ - name: Making regal services active.
+   service:
+     name: regal
+     state: reloaded
+   ignore_errors: yes
+ - name: turning on internet
+   command: sed -i 's/#nameserver 8.8.8.8/nameserver 8.8.8.8/' /etc/resolv.conf

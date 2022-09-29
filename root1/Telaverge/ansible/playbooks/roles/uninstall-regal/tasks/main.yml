@@ -1,0 +1,16 @@
+---
+# tasks file for uninstall-regal
+ - name: Un-Installation of Regal.
+   command: chdir=/opt/regal/sbin/ python uninstall-regal.py no
+   ignore_errors: True
+ - name: Removing all the remaining product rpms.
+   shell: rpm -qa | grep regal | xargs rpm -e
+   ignore_errors: True
+ - name: Stop Keycloak
+   service: name=keycloak state=stopped
+ - name: Removing Keycloak.
+   file:
+           path: /opt/keycloak-10.0.1
+           state: absent
+ - name: Dropping DB.
+   command: "mongo -u regal -p regal123 Regal --eval 'db.dropDatabase()'"

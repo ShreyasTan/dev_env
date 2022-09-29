@@ -1,0 +1,6 @@
+---
+# tasks file for start-regal
+ - name: Starting regal sevices.
+   service:
+           name: regal
+           state: started

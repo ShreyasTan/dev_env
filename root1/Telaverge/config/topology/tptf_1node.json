@@ -1,0 +1,43 @@
+{
+            "topologyType": "local",
+            "topologyName": "TPTF_1Node",
+            "description" : "Third party test framework 1 node topology",
+            "nodes": [
+                {
+                "nodeName": "tptf_node_01",
+                "nodeId" : "abc",
+                "nodeType": "Lab-VM",
+                "cleanUpRequired": true,
+                "machineAllocation" : {
+                "type" : "mandatory",
+                "name" : "tptf_node_01"
+                },
+                "os": {
+                    "osName": "default_os",
+                    "platform": {
+                            "platformName" : "default_platform",
+                            "applications": [
+			    {
+				    "appName": "TPTF",
+				    "appVersion": "1.0.0",
+				    "pluginName": "TPTFConnectorPlugin",
+				    "frameWorkPath": ""
+			    }
+                            ]
+                        }
+                },
+                "ram": 8,
+                "ramUnit": "gb",
+                "cpu": {
+                        "cpus": 4
+                },  
+                "storage": {
+                        "disks": [{
+                                "capacity": 20, 
+                                "name": "sda",
+                                "storageUnit": "gb"
+                            }
+                        ]   
+                    }   
+             }]
+}

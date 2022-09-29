@@ -1,0 +1,14 @@
+#/usr/lib/systemd/system/
+
+[Unit]
+Description = Service file
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/python {{ execute_ulcl_tcpdump_file }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

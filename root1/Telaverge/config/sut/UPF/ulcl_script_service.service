@@ -1,0 +1,14 @@
+#/usr/lib/systemd/system/
+
+[Unit]
+Description = Service file
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/bin/python3 {{ execute_ulcl_scripts }}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

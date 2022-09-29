@@ -1,0 +1,7 @@
+---
+
+- hosts: "{{host}}"
+  gather_facts: false
+  roles:
+    - {role: install-datetime-server, tags: ['install-datetime-server']}
+    - {role: uninstall-datetime-server, tags: ['uninstall-datetime-server']}
